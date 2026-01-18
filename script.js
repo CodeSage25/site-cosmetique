@@ -1,6 +1,7 @@
 /* ============================================
    LUMIÈRE D'OR - JAVASCRIPT PRINCIPAL
    Site Vitrine Cosmétique Premium
+   Version 2.0 - Optimisé Mobile
    ============================================ */
 
 // ============================================
@@ -15,13 +16,16 @@ const CONFIG = {
   heroSliderInterval: 6000,
   testimonialInterval: 7000,
   particlesCount: 50,
+  enableCursor: true,
+  enableParticles: true,
+  enableSoundEffects: false,
 };
 
 // ============================================
 // BASE DE DONNÉES DES PRODUITS
 // ============================================
 const PRODUCTS = [
-  // SAVONS
+  // ========== SAVONS ==========
   {
     id: 1,
     name: "Savon Nila Premium",
@@ -29,11 +33,12 @@ const PRODUCTS = [
     price: 3500,
     oldPrice: null,
     description:
-      "Savon naturel au nila bleu pour un teint éclatant et uniforme",
+      "Savon naturel au nila bleu pour un teint éclatant et uniforme. Nettoie en profondeur tout en respectant votre peau.",
     image: "images/products/savon-nila.jpg",
     badge: "Best-seller",
     rating: 5,
     stock: true,
+    features: ["100% Naturel", "Anti-taches", "Hydratant"],
   },
   {
     id: 2,
@@ -42,11 +47,12 @@ const PRODUCTS = [
     price: 3000,
     oldPrice: 3500,
     description:
-      "Savon éclaircissant au curcuma pour une peau lumineuse et saine",
+      "Savon éclaircissant au curcuma pour une peau lumineuse et saine. Idéal pour unifier le teint.",
     image: "images/products/savon-curcuma.jpg",
     badge: "Promo",
     rating: 5,
     stock: true,
+    features: ["Éclaircissant", "Anti-inflammatoire", "Antioxydant"],
   },
   {
     id: 3,
@@ -54,11 +60,13 @@ const PRODUCTS = [
     category: "savons",
     price: 2500,
     oldPrice: null,
-    description: "Enrichi en bêta-carotène pour un effet bonne mine naturel",
+    description:
+      "Enrichi en bêta-carotène pour un effet bonne mine naturel et une peau éclatante de santé.",
     image: "images/products/savon-carotte.jpg",
     badge: null,
     rating: 4,
     stock: true,
+    features: ["Bonne mine", "Vitamine A", "Régénérant"],
   },
   {
     id: 4,
@@ -66,11 +74,13 @@ const PRODUCTS = [
     category: "savons",
     price: 4000,
     oldPrice: null,
-    description: "Douceur et hydratation intense pour les peaux sensibles",
+    description:
+      "Douceur et hydratation intense pour les peaux sensibles. Apaise et nourrit en profondeur.",
     image: "images/products/savon-lait-chevre.jpg",
     badge: "Nouveau",
     rating: 5,
     stock: true,
+    features: ["Peaux sensibles", "Hydratant", "Apaisant"],
   },
   {
     id: 5,
@@ -78,175 +88,287 @@ const PRODUCTS = [
     category: "savons",
     price: 3500,
     oldPrice: null,
-    description: "Purifie et détoxifie la peau en profondeur",
+    description:
+      "Purifie et détoxifie la peau en profondeur. Élimine les impuretés et resserre les pores.",
     image: "images/products/savon-charbon.jpg",
     badge: null,
     rating: 4,
     stock: true,
+    features: ["Détoxifiant", "Purifiant", "Anti-pores"],
   },
-
-  // SOINS VISAGE
   {
     id: 6,
+    name: "Savon Papaye Exfoliant",
+    category: "savons",
+    price: 3000,
+    oldPrice: null,
+    description:
+      "Exfoliation douce à la papaye pour éliminer les cellules mortes et révéler une peau neuve.",
+    image: "images/products/savon-papaye.jpg",
+    badge: null,
+    rating: 4,
+    stock: true,
+    features: ["Exfoliant", "Éclaircissant", "Régénérant"],
+  },
+
+  // ========== SOINS VISAGE ==========
+  {
+    id: 7,
     name: "Sérum Anti-Taches Éclat",
     category: "soins",
     price: 12000,
     oldPrice: 15000,
-    description: "Sérum concentré pour éliminer les taches et unifier le teint",
+    description:
+      "Sérum concentré pour éliminer les taches et unifier le teint. Résultats visibles en 2 semaines.",
     image: "images/products/serum-anti-taches.jpg",
     badge: "Top vente",
     rating: 5,
     stock: true,
+    features: ["Anti-taches", "Unifiant", "Vitamine C"],
   },
   {
-    id: 7,
+    id: 8,
     name: "Crème Hydratante 24H",
     category: "soins",
     price: 8500,
     oldPrice: null,
-    description: "Hydratation longue durée pour une peau douce et rebondie",
+    description:
+      "Hydratation longue durée pour une peau douce et rebondie. Texture légère non grasse.",
     image: "images/products/creme-hydratante.jpg",
     badge: null,
     rating: 5,
     stock: true,
+    features: ["Hydratation 24h", "Non gras", "Tous types de peau"],
   },
   {
-    id: 8,
+    id: 9,
     name: "Huile de Carotte Pure",
     category: "soins",
     price: 6000,
     oldPrice: null,
-    description: "Huile naturelle pour un teint hâlé et une peau nourrie",
+    description:
+      "Huile naturelle pour un teint hâlé et une peau nourrie. Riche en vitamines A et E.",
     image: "images/products/huile-carotte.jpg",
     badge: "Naturel",
     rating: 4,
     stock: true,
+    features: ["100% Naturel", "Bonne mine", "Nourrissant"],
   },
   {
-    id: 9,
+    id: 10,
     name: "Masque Éclat Instantané",
     category: "soins",
     price: 5500,
     oldPrice: null,
-    description: "Masque illuminateur pour un coup d'éclat immédiat",
+    description:
+      "Masque illuminateur pour un coup d'éclat immédiat. Parfait avant une occasion spéciale.",
     image: "images/products/masque-eclat.jpg",
     badge: null,
     rating: 4,
     stock: true,
+    features: ["Éclat instantané", "Hydratant", "Anti-fatigue"],
+  },
+  {
+    id: 11,
+    name: "Contour des Yeux Premium",
+    category: "soins",
+    price: 9500,
+    oldPrice: 12000,
+    description:
+      "Soin ciblé pour réduire les cernes et les poches. Regard frais et reposé.",
+    image: "images/products/contour-yeux.jpg",
+    badge: "Promo",
+    rating: 5,
+    stock: true,
+    features: ["Anti-cernes", "Anti-poches", "Lissant"],
   },
 
-  // CORPS
+  // ========== SOINS CORPS ==========
   {
-    id: 10,
+    id: 12,
     name: "Lait Corporel Karité",
     category: "corps",
     price: 7500,
     oldPrice: null,
-    description: "Lait nourrissant au beurre de karité pour une peau satinée",
+    description:
+      "Lait nourrissant au beurre de karité pour une peau satinée et protégée toute la journée.",
     image: "images/products/lait-karite.jpg",
     badge: "Coup de cœur",
     rating: 5,
     stock: true,
+    features: ["Nourrissant", "Protecteur", "Parfum délicat"],
   },
   {
-    id: 11,
+    id: 13,
     name: "Gommage Corps Café",
     category: "corps",
     price: 5000,
     oldPrice: null,
-    description: "Exfoliant naturel au café pour une peau lisse et tonifiée",
+    description:
+      "Exfoliant naturel au café pour une peau lisse et tonifiée. Action anti-cellulite.",
     image: "images/products/gommage-cafe.jpg",
     badge: null,
     rating: 4,
     stock: true,
+    features: ["Exfoliant", "Tonifiant", "Anti-cellulite"],
   },
   {
-    id: 12,
+    id: 14,
     name: "Huile Sèche Précieuse",
     category: "corps",
     price: 9000,
     oldPrice: 11000,
-    description: "Huile multi-usages pour le corps, le visage et les cheveux",
+    description:
+      "Huile multi-usages pour le corps, le visage et les cheveux. Absorption rapide.",
     image: "images/products/huile-seche.jpg",
     badge: "Promo",
     rating: 5,
     stock: true,
+    features: ["Multi-usages", "Non gras", "Parfum luxueux"],
+  },
+  {
+    id: 15,
+    name: "Beurre Corporel Mangue",
+    category: "corps",
+    price: 6500,
+    oldPrice: null,
+    description:
+      "Beurre fondant à la mangue pour une hydratation intense des peaux très sèches.",
+    image: "images/products/beurre-mangue.jpg",
+    badge: null,
+    rating: 4,
+    stock: true,
+    features: ["Ultra-nourrissant", "Peaux sèches", "Parfum fruité"],
   },
 
-  // CHEVEUX
+  // ========== SOINS CHEVEUX ==========
   {
-    id: 13,
+    id: 16,
     name: "Bonnet Chauffant Pro",
     category: "cheveux",
     price: 15000,
     oldPrice: null,
-    description: "Bonnet thermique pour des soins capillaires professionnels",
+    description:
+      "Bonnet thermique pour des soins capillaires professionnels à domicile. Optimise la pénétration des soins.",
     image: "images/products/bonnet-chauffant.jpg",
     badge: "Exclusif",
     rating: 5,
     stock: true,
+    features: ["Professionnel", "Réutilisable", "Chauffage uniforme"],
   },
   {
-    id: 14,
+    id: 17,
     name: "Masque Capillaire Intense",
     category: "cheveux",
     price: 6500,
     oldPrice: null,
-    description: "Masque réparateur pour cheveux secs et abîmés",
+    description:
+      "Masque réparateur pour cheveux secs et abîmés. Répare et renforce la fibre capillaire.",
     image: "images/products/masque-capillaire.jpg",
     badge: null,
     rating: 4,
     stock: true,
+    features: ["Réparateur", "Fortifiant", "Anti-casse"],
   },
   {
-    id: 15,
+    id: 18,
     name: "Huile de Ricin Premium",
     category: "cheveux",
     price: 5500,
     oldPrice: null,
-    description: "Stimule la pousse des cheveux et des cils naturellement",
+    description:
+      "Stimule la pousse des cheveux et des cils naturellement. Huile 100% pure et pressée à froid.",
     image: "images/products/huile-ricin.jpg",
     badge: "Naturel",
     rating: 5,
     stock: true,
+    features: ["Pousse accélérée", "100% Pur", "Cils et sourcils"],
+  },
+  {
+    id: 19,
+    name: "Sérum Pousse Express",
+    category: "cheveux",
+    price: 8000,
+    oldPrice: null,
+    description:
+      "Sérum concentré pour stimuler la croissance capillaire et renforcer les cheveux fragiles.",
+    image: "images/products/serum-pousse.jpg",
+    badge: "Nouveau",
+    rating: 5,
+    stock: true,
+    features: ["Croissance x2", "Anti-chute", "Renforçant"],
   },
 
-  // ACCESSOIRES
+  // ========== ACCESSOIRES ==========
   {
-    id: 16,
+    id: 20,
     name: "Brosse Nettoyante Visage",
     category: "accessoires",
     price: 8000,
     oldPrice: null,
-    description: "Brosse en silicone pour un nettoyage en profondeur",
+    description:
+      "Brosse en silicone pour un nettoyage en profondeur. Vibrante et rechargeable.",
     image: "images/products/brosse-visage.jpg",
     badge: null,
     rating: 4,
     stock: true,
+    features: ["Silicone doux", "Rechargeable", "Waterproof"],
   },
   {
-    id: 17,
+    id: 21,
     name: "Bandeau Spa Luxe",
     category: "accessoires",
     price: 3000,
     oldPrice: null,
-    description: "Bandeau doux et élégant pour vos soins beauté",
+    description:
+      "Bandeau doux et élégant pour vos soins beauté. Maintien parfait des cheveux.",
     image: "images/products/bandeau-spa.jpg",
     badge: null,
     rating: 5,
     stock: true,
+    features: ["Velours doux", "Ajustable", "Lavable"],
   },
   {
-    id: 18,
+    id: 22,
     name: "Kit Pinceaux Maquillage",
     category: "accessoires",
     price: 12000,
     oldPrice: 15000,
-    description: "Set complet de 12 pinceaux professionnels",
+    description:
+      "Set complet de 12 pinceaux professionnels avec pochette de rangement.",
     image: "images/products/kit-pinceaux.jpg",
     badge: "Promo",
     rating: 5,
     stock: true,
+    features: ["12 pinceaux", "Poils synthétiques", "Pochette incluse"],
+  },
+  {
+    id: 23,
+    name: "Rouleau Jade Visage",
+    category: "accessoires",
+    price: 7000,
+    oldPrice: null,
+    description:
+      "Rouleau en jade naturel pour masser et tonifier le visage. Effet anti-âge.",
+    image: "images/products/rouleau-jade.jpg",
+    badge: "Tendance",
+    rating: 5,
+    stock: true,
+    features: ["Jade naturel", "Anti-âge", "Drainage lymphatique"],
+  },
+  {
+    id: 24,
+    name: "Gua Sha Quartz Rose",
+    category: "accessoires",
+    price: 5500,
+    oldPrice: null,
+    description:
+      "Pierre de massage Gua Sha en quartz rose pour sculpter et lifter le visage.",
+    image: "images/products/gua-sha.jpg",
+    badge: null,
+    rating: 4,
+    stock: true,
+    features: ["Quartz rose", "Sculptant", "Relaxant"],
   },
 ];
 
@@ -256,56 +378,324 @@ const PRODUCTS = [
 const TESTIMONIALS = [
   {
     id: 1,
-    text: "Les produits Lumière d'Or ont complètement transformé ma peau. Le sérum anti-tache est incroyable ! En quelques semaines, mes taches ont considérablement diminué.",
+    text: "Les produits Lumière d'Or ont complètement transformé ma peau. Le sérum anti-tache est incroyable ! En quelques semaines, mes taches ont considérablement diminué. Je ne peux plus m'en passer !",
     author: "Sarah M.",
-    role: "Cliente fidèle",
+    role: "Cliente fidèle depuis 2 ans",
     avatar: "S",
     image: null,
+    rating: 5,
+    product: "Sérum Anti-Taches Éclat",
   },
   {
     id: 2,
-    text: "Enfin des produits naturels qui fonctionnent vraiment ! Le savon au curcuma a rendu ma peau lumineuse. Je recommande à 100% !",
+    text: "Enfin des produits naturels qui fonctionnent vraiment ! Le savon au curcuma a rendu ma peau lumineuse et uniforme. Je recommande à 100% cette marque exceptionnelle !",
     author: "Aminata K.",
     role: "Nouvelle cliente",
     avatar: "A",
     image: null,
+    rating: 5,
+    product: "Savon Curcuma Gold",
   },
   {
     id: 3,
-    text: "Service client exceptionnel et produits de qualité. Le bonnet chauffant pour mes cheveux est devenu indispensable dans ma routine capillaire.",
+    text: "Service client exceptionnel et produits de qualité supérieure. Le bonnet chauffant pour mes cheveux est devenu indispensable dans ma routine capillaire hebdomadaire.",
     author: "Fatou D.",
     role: "Cliente VIP",
     avatar: "F",
     image: null,
+    rating: 5,
+    product: "Bonnet Chauffant Pro",
   },
   {
     id: 4,
-    text: "J'utilise le lait corporel au karité depuis 3 mois. Ma peau n'a jamais été aussi douce et hydratée. Merci Lumière d'Or !",
+    text: "J'utilise le lait corporel au karité depuis 3 mois. Ma peau n'a jamais été aussi douce et hydratée, même en saison sèche. Un produit miracle !",
     author: "Marie-Claire T.",
     role: "Cliente régulière",
     avatar: "M",
     image: null,
+    rating: 5,
+    product: "Lait Corporel Karité",
   },
   {
     id: 5,
-    text: "Les savons sont d'une qualité exceptionnelle. Mon préféré est le savon au lait de chèvre, parfait pour ma peau sensible.",
+    text: "Les savons sont d'une qualité exceptionnelle. Mon préféré est le savon au lait de chèvre, parfait pour ma peau sensible qui réagit à tout.",
     author: "Patricia N.",
     role: "Cliente satisfaite",
     avatar: "P",
     image: null,
+    rating: 5,
+    product: "Savon Lait de Chèvre",
+  },
+  {
+    id: 6,
+    text: "L'huile de ricin a fait des miracles sur mes cils et sourcils ! En 1 mois, j'ai vu une vraie différence. Produit 100% naturel et efficace.",
+    author: "Christelle B.",
+    role: "Influenceuse beauté",
+    avatar: "C",
+    image: null,
+    rating: 5,
+    product: "Huile de Ricin Premium",
   },
 ];
+
+// ============================================
+// UTILITAIRES
+// ============================================
+const Utils = {
+  // Formater le prix
+  formatPrice(price) {
+    return new Intl.NumberFormat("fr-FR").format(price) + " " + CONFIG.currency;
+  },
+
+  // Valider un email
+  validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  },
+
+  // Générer un ID unique
+  generateId() {
+    return "_" + Math.random().toString(36).substr(2, 9);
+  },
+
+  // Debounce
+  debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  },
+
+  // Throttle
+  throttle(func, limit) {
+    let inThrottle;
+    return function (...args) {
+      if (!inThrottle) {
+        func.apply(this, args);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  },
+
+  // Détecter mobile
+  isMobile() {
+    return window.matchMedia("(max-width: 768px)").matches;
+  },
+
+  // Détecter tactile
+  isTouchDevice() {
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  },
+
+  // Scroll vers élément
+  scrollToElement(element, offset = 100) {
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  },
+
+  // Créer élément avec attributs
+  createElement(tag, attributes = {}, children = []) {
+    const element = document.createElement(tag);
+    Object.entries(attributes).forEach(([key, value]) => {
+      if (key === "className") {
+        element.className = value;
+      } else if (key === "innerHTML") {
+        element.innerHTML = value;
+      } else if (key.startsWith("on")) {
+        element.addEventListener(key.slice(2).toLowerCase(), value);
+      } else {
+        element.setAttribute(key, value);
+      }
+    });
+    children.forEach((child) => {
+      if (typeof child === "string") {
+        element.appendChild(document.createTextNode(child));
+      } else {
+        element.appendChild(child);
+      }
+    });
+    return element;
+  },
+};
+
+// ============================================
+// GESTIONNAIRE DE NOTIFICATIONS
+// ============================================
+class NotificationManager {
+  constructor() {
+    this.container = null;
+    this.init();
+  }
+
+  init() {
+    this.container = document.createElement("div");
+    this.container.className = "notification-container";
+    this.container.style.cssText = `
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      z-index: 10001;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      pointer-events: none;
+    `;
+    document.body.appendChild(this.container);
+  }
+
+  show(message, type = "success", duration = 5000) {
+    const notification = document.createElement("div");
+    notification.className = `notification notification-${type}`;
+    notification.style.cssText = `
+      background: ${
+        type === "success"
+          ? "linear-gradient(135deg, #d4af37, #f4e4bc)"
+          : type === "error"
+            ? "linear-gradient(135deg, #ff4444, #ff6b6b)"
+            : "linear-gradient(135deg, #333, #555)"
+      };
+      color: ${type === "success" ? "#000" : "#fff"};
+      padding: 18px 25px;
+      border-radius: 15px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: auto;
+    `;
+
+    notification.innerHTML = `
+      <span>${message}</span>
+      <button style="
+        background: transparent;
+        border: none;
+        color: inherit;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+        padding: 0;
+        line-height: 1;
+      " onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
+
+    this.container.appendChild(notification);
+
+    // Animation d'entrée
+    requestAnimationFrame(() => {
+      notification.style.transform = "translateX(0)";
+    });
+
+    // Fermeture au clic
+    const closeBtn = notification.querySelector("button");
+    const close = () => {
+      notification.style.transform = "translateX(120%)";
+      setTimeout(() => notification.remove(), 400);
+    };
+
+    closeBtn.addEventListener("click", close);
+
+    // Fermeture automatique
+    if (duration > 0) {
+      setTimeout(close, duration);
+    }
+
+    return notification;
+  }
+
+  success(message, duration) {
+    return this.show(message, "success", duration);
+  }
+
+  error(message, duration) {
+    return this.show(message, "error", duration);
+  }
+
+  info(message, duration) {
+    return this.show(message, "info", duration);
+  }
+}
+
+// ============================================
+// GESTIONNAIRE DE FAVORIS
+// ============================================
+class WishlistManager {
+  constructor() {
+    this.items = this.load();
+  }
+
+  load() {
+    try {
+      return JSON.parse(localStorage.getItem("lumiere_wishlist")) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  save() {
+    localStorage.setItem("lumiere_wishlist", JSON.stringify(this.items));
+  }
+
+  toggle(productId) {
+    const index = this.items.indexOf(productId);
+    if (index > -1) {
+      this.items.splice(index, 1);
+      this.save();
+      return false;
+    } else {
+      this.items.push(productId);
+      this.save();
+      return true;
+    }
+  }
+
+  has(productId) {
+    return this.items.includes(productId);
+  }
+
+  getAll() {
+    return this.items;
+  }
+
+  count() {
+    return this.items.length;
+  }
+}
 
 // ============================================
 // CLASSE PRINCIPALE DE L'APPLICATION
 // ============================================
 class LumiereApp {
   constructor() {
+    this.notifications = new NotificationManager();
+    this.wishlist = new WishlistManager();
+    this.carouselPosition = 0;
+    this.currentTestimonial = 0;
+    this.heroSlideIndex = 0;
+    this.isMenuOpen = false;
+
     this.init();
   }
 
   init() {
-    // Attendre le chargement du DOM
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => this.onReady());
     } else {
@@ -333,6 +723,8 @@ class LumiereApp {
     this.initPlaceholders();
     this.initSmoothScroll();
     this.initLazyLoading();
+    this.initKeyboardNavigation();
+    this.initResizeHandler();
 
     console.log("✅ Lumière d'Or - Site prêt !");
   }
@@ -342,55 +734,78 @@ class LumiereApp {
   // ============================================
   initPreloader() {
     const preloader = document.getElementById("preloader");
-
     if (!preloader) return;
 
-    // Simuler le chargement
-    let progress = 0;
     const progressBar = preloader.querySelector(".preloader-progress");
+    let progress = 0;
 
-    const loadingInterval = setInterval(() => {
-      progress += Math.random() * 15;
+    const updateProgress = () => {
+      progress += Math.random() * 20 + 5;
+
       if (progress >= 100) {
         progress = 100;
-        clearInterval(loadingInterval);
+        if (progressBar) progressBar.style.width = "100%";
 
-        // Masquer le preloader
         setTimeout(() => {
           preloader.classList.add("hidden");
-          document.body.style.overflow = "visible";
+          document.body.style.overflow = "";
 
-          // Supprimer après l'animation
+          // Trigger animations après le preloader
           setTimeout(() => {
-            preloader.remove();
-          }, 800);
-        }, 500);
-      }
+            document
+              .querySelectorAll(
+                ".reveal, .reveal-left, .reveal-right, .reveal-scale",
+              )
+              .forEach((el) => {
+                if (this.isElementInViewport(el)) {
+                  el.classList.add("active");
+                }
+              });
+          }, 100);
 
-      if (progressBar) {
-        progressBar.style.width = `${progress}%`;
+          setTimeout(() => preloader.remove(), 800);
+        }, 300);
+      } else {
+        if (progressBar) progressBar.style.width = `${progress}%`;
+        requestAnimationFrame(() =>
+          setTimeout(updateProgress, 50 + Math.random() * 100),
+        );
       }
-    }, 100);
+    };
 
-    // Fallback si le chargement prend trop de temps
+    updateProgress();
+
+    // Fallback de sécurité
     setTimeout(() => {
       if (!preloader.classList.contains("hidden")) {
         preloader.classList.add("hidden");
+        document.body.style.overflow = "";
       }
     }, 5000);
+  }
+
+  isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
   }
 
   // ============================================
   // CURSEUR PERSONNALISÉ
   // ============================================
   initCustomCursor() {
+    if (!CONFIG.enableCursor) return;
+
     const cursor = document.querySelector(".cursor");
     const cursorDot = document.querySelector(".cursor-dot");
 
     if (!cursor || !cursorDot) return;
 
-    // Désactiver sur mobile/tablette
-    if (window.matchMedia("(pointer: coarse)").matches) {
+    // Désactiver sur tactile
+    if (Utils.isTouchDevice()) {
       cursor.style.display = "none";
       cursorDot.style.display = "none";
       return;
@@ -400,18 +815,22 @@ class LumiereApp {
       mouseY = 0;
     let cursorX = 0,
       cursorY = 0;
+    let isVisible = false;
 
-    // Suivre la souris
-    document.addEventListener("mousemove", (e) => {
+    const onMouseMove = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
 
-      // Mise à jour directe du point
+      if (!isVisible) {
+        cursor.style.opacity = "1";
+        cursorDot.style.opacity = "1";
+        isVisible = true;
+      }
+
       cursorDot.style.left = mouseX + "px";
       cursorDot.style.top = mouseY + "px";
-    });
+    };
 
-    // Animation fluide du cercle
     const animateCursor = () => {
       cursorX += (mouseX - cursorX) * 0.15;
       cursorY += (mouseY - cursorY) * 0.15;
@@ -421,34 +840,37 @@ class LumiereApp {
 
       requestAnimationFrame(animateCursor);
     };
+
+    document.addEventListener("mousemove", onMouseMove);
     animateCursor();
 
-    // Effet au survol des liens
-    const interactiveElements = document.querySelectorAll(
-      "a, button, .product-card, .filter-btn, .overlay-btn, input, textarea",
-    );
+    // Effet au survol
+    const interactiveSelectors =
+      "a, button, .product-card, .filter-btn, .overlay-btn, input, textarea, .gallery-item, .testimonial-item, .dot";
 
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", () => {
+    document.addEventListener("mouseover", (e) => {
+      if (e.target.closest(interactiveSelectors)) {
         cursor.classList.add("active");
-        cursor.style.transform = "translate(-50%, -50%) scale(1.5)";
-      });
-
-      el.addEventListener("mouseleave", () => {
-        cursor.classList.remove("active");
-        cursor.style.transform = "translate(-50%, -50%) scale(1)";
-      });
+      }
     });
 
-    // Masquer lors de la sortie de la fenêtre
+    document.addEventListener("mouseout", (e) => {
+      if (e.target.closest(interactiveSelectors)) {
+        cursor.classList.remove("active");
+      }
+    });
+
+    // Masquer lors de la sortie
     document.addEventListener("mouseleave", () => {
       cursor.style.opacity = "0";
       cursorDot.style.opacity = "0";
+      isVisible = false;
     });
 
     document.addEventListener("mouseenter", () => {
       cursor.style.opacity = "1";
       cursorDot.style.opacity = "1";
+      isVisible = true;
     });
   }
 
@@ -456,33 +878,40 @@ class LumiereApp {
   // PARTICULES FLOTTANTES
   // ============================================
   initParticles() {
-    const particlesContainer = document.getElementById("particles");
+    if (!CONFIG.enableParticles) return;
 
-    if (!particlesContainer) return;
+    const container = document.getElementById("particles");
+    if (!container) return;
 
-    // Créer les particules
-    for (let i = 0; i < CONFIG.particlesCount; i++) {
+    // Réduire sur mobile pour la performance
+    const count = Utils.isMobile()
+      ? Math.floor(CONFIG.particlesCount / 2)
+      : CONFIG.particlesCount;
+
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < count; i++) {
       const particle = document.createElement("div");
       particle.className = "particle";
 
-      // Position aléatoire
-      particle.style.left = Math.random() * 100 + "%";
-      particle.style.top = Math.random() * 100 + "%";
+      const size = Math.random() * 5 + 2;
+      const left = Math.random() * 100;
+      const delay = Math.random() * 8;
+      const duration = Math.random() * 4 + 6;
 
-      // Taille aléatoire
-      const size = Math.random() * 6 + 2;
-      particle.style.width = size + "px";
-      particle.style.height = size + "px";
+      particle.style.cssText = `
+        left: ${left}%;
+        width: ${size}px;
+        height: ${size}px;
+        animation-delay: ${delay}s;
+        animation-duration: ${duration}s;
+        opacity: ${Math.random() * 0.4 + 0.1};
+      `;
 
-      // Délai d'animation aléatoire
-      particle.style.animationDelay = Math.random() * 8 + "s";
-      particle.style.animationDuration = Math.random() * 4 + 6 + "s";
-
-      // Opacité variable
-      particle.style.opacity = Math.random() * 0.5 + 0.1;
-
-      particlesContainer.appendChild(particle);
+      fragment.appendChild(particle);
     }
+
+    container.appendChild(fragment);
   }
 
   // ============================================
@@ -494,65 +923,85 @@ class LumiereApp {
     const mobileMenu = document.getElementById("mobileMenu");
     const mobileLinks = mobileMenu?.querySelectorAll("a");
 
-    // Effet au scroll
     let lastScroll = 0;
-    let isScrolling = false;
+    let ticking = false;
 
-    const handleScroll = () => {
-      if (!isScrolling) {
-        isScrolling = true;
-        requestAnimationFrame(() => {
-          const currentScroll = window.pageYOffset;
+    // Effet au scroll
+    const updateNavbar = () => {
+      const currentScroll = window.pageYOffset;
 
-          // Ajouter/retirer la classe scrolled
-          if (currentScroll > 100) {
-            navbar?.classList.add("scrolled");
-          } else {
-            navbar?.classList.remove("scrolled");
-          }
+      if (navbar) {
+        // Ajouter/retirer classe scrolled
+        navbar.classList.toggle("scrolled", currentScroll > 50);
 
-          // Masquer/afficher au scroll (optionnel)
-          if (currentScroll > lastScroll && currentScroll > 500) {
+        // Masquer/afficher au scroll (seulement sur desktop)
+        if (!Utils.isMobile() && currentScroll > 500) {
+          if (currentScroll > lastScroll) {
             navbar.style.transform = "translateY(-100%)";
           } else {
             navbar.style.transform = "translateY(0)";
           }
-
-          lastScroll = currentScroll;
-          isScrolling = false;
-        });
+        } else {
+          navbar.style.transform = "translateY(0)";
+        }
       }
+
+      lastScroll = currentScroll;
+      ticking = false;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(updateNavbar);
+          ticking = true;
+        }
+      },
+      { passive: true },
+    );
 
-    // Menu mobile toggle
-    menuToggle?.addEventListener("click", () => {
-      menuToggle.classList.toggle("active");
-      mobileMenu?.classList.toggle("active");
-      document.body.style.overflow = mobileMenu?.classList.contains("active")
-        ? "hidden"
-        : "";
-    });
-
-    // Fermer le menu au clic sur un lien
-    mobileLinks?.forEach((link) => {
-      link.addEventListener("click", () => {
-        menuToggle?.classList.remove("active");
-        mobileMenu?.classList.remove("active");
-        document.body.style.overflow = "";
+    // Menu mobile
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener("click", () => {
+        this.isMenuOpen = !this.isMenuOpen;
+        menuToggle.classList.toggle("active", this.isMenuOpen);
+        mobileMenu.classList.toggle("active", this.isMenuOpen);
+        document.body.style.overflow = this.isMenuOpen ? "hidden" : "";
       });
-    });
 
-    // Active link highlighting
+      // Fermer au clic sur un lien
+      mobileLinks?.forEach((link) => {
+        link.addEventListener("click", () => {
+          this.isMenuOpen = false;
+          menuToggle.classList.remove("active");
+          mobileMenu.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Fermer avec Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && this.isMenuOpen) {
+          this.isMenuOpen = false;
+          menuToggle.classList.remove("active");
+          mobileMenu.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      });
+    }
+
+    // Liens actifs
     this.initActiveLinks();
   }
 
   initActiveLinks() {
     const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav-links a");
+    const navLinks = document.querySelectorAll(
+      ".nav-links a, .mobile-menu .nav-links a",
+    );
 
-    const highlightActiveLink = () => {
+    const updateActiveLink = Utils.throttle(() => {
       const scrollY = window.pageYOffset;
 
       sections.forEach((section) => {
@@ -560,18 +1009,18 @@ class LumiereApp {
         const sectionTop = section.offsetTop - 200;
         const sectionId = section.getAttribute("id");
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
           navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${sectionId}`) {
-              link.classList.add("active");
-            }
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === `#${sectionId}`,
+            );
           });
         }
       });
-    };
+    }, 100);
 
-    window.addEventListener("scroll", highlightActiveLink, { passive: true });
+    window.addEventListener("scroll", updateActiveLink, { passive: true });
   }
 
   // ============================================
@@ -579,18 +1028,14 @@ class LumiereApp {
   // ============================================
   initHeroSlider() {
     const slides = document.querySelectorAll(".hero-slide");
-
     if (slides.length <= 1) return;
 
-    let currentSlide = 0;
-
     const nextSlide = () => {
-      slides[currentSlide].classList.remove("active");
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add("active");
+      slides[this.heroSlideIndex].classList.remove("active");
+      this.heroSlideIndex = (this.heroSlideIndex + 1) % slides.length;
+      slides[this.heroSlideIndex].classList.add("active");
     };
 
-    // Démarrer le slider automatique
     setInterval(nextSlide, CONFIG.heroSliderInterval);
   }
 
@@ -604,104 +1049,90 @@ class LumiereApp {
 
   renderCarouselProducts(filter = "all") {
     const carousel = document.getElementById("productsCarousel");
-
     if (!carousel) return;
 
-    const filteredProducts =
+    let products =
       filter === "all"
-        ? PRODUCTS.filter((p) => p.badge) // Produits avec badge pour le carrousel
+        ? PRODUCTS.filter((p) => p.badge)
         : PRODUCTS.filter((p) => p.category === filter);
 
-    const productsToShow =
-      filteredProducts.length > 0 ? filteredProducts : PRODUCTS.slice(0, 6);
+    if (products.length === 0) {
+      products = PRODUCTS.slice(0, 6);
+    }
 
-    carousel.innerHTML = productsToShow
-      .map((product) => this.createProductCard(product))
+    carousel.innerHTML = products
+      .map((p) => this.createProductCard(p))
       .join("");
 
-    // Réinitialiser la position du carrousel
-    carousel.style.transform = "translateX(0)";
     this.carouselPosition = 0;
+    carousel.style.transform = "translateX(0)";
 
-    // Ajouter les événements aux boutons
     this.attachProductEvents();
   }
 
   renderGridProducts(filter = "all") {
     const grid = document.getElementById("productsGrid");
-
     if (!grid) return;
 
-    const filteredProducts =
+    const products =
       filter === "all"
         ? PRODUCTS
         : PRODUCTS.filter((p) => p.category === filter);
 
-    grid.innerHTML = filteredProducts
-      .map((product) => this.createProductCard(product))
-      .join("");
+    grid.innerHTML = products.map((p) => this.createProductCard(p)).join("");
 
-    // Animation d'entrée
+    // Animation d'entrée échelonnée
     const cards = grid.querySelectorAll(".product-card");
     cards.forEach((card, index) => {
       card.style.opacity = "0";
       card.style.transform = "translateY(30px)";
 
       setTimeout(() => {
-        card.style.transition = "all 0.5s ease";
+        card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
         card.style.opacity = "1";
         card.style.transform = "translateY(0)";
-      }, index * 100);
+      }, index * 80);
     });
 
-    // Attacher les événements
     this.attachProductEvents();
   }
 
   createProductCard(product) {
     const whatsappMessage = encodeURIComponent(
-      `Bonjour, je suis intéressé(e) par le produit "${product.name}" à ${this.formatPrice(product.price)}. Est-il disponible ?`,
+      `Bonjour, je suis intéressé(e) par "${product.name}" à ${Utils.formatPrice(product.price)}. Est-il disponible ?`,
     );
-
     const whatsappLink = `https://wa.me/${CONFIG.whatsappNumber}?text=${whatsappMessage}`;
 
-    const badgeHTML = product.badge
-      ? `<span class="product-badge">${product.badge}</span>`
-      : "";
-
-    const oldPriceHTML = product.oldPrice
-      ? `<span>${this.formatPrice(product.oldPrice)}</span>`
-      : "";
-
-    const ratingHTML = this.createRatingStars(product.rating);
+    const isInWishlist = this.wishlist.has(product.id);
 
     return `
       <div class="product-card" data-category="${product.category}" data-id="${product.id}">
-        ${badgeHTML}
+        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
         <div class="product-image">
-          <img src="${product.image}" alt="${product.name}" 
-               onerror="this.parentElement.innerHTML='<i class=\\'fas fa-spa placeholder-icon\\'></i>'">
+          <img src="${product.image}" alt="${product.name}" loading="lazy"
+               onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\\'fas fa-spa placeholder-icon\\'></i>'">
           <div class="product-overlay">
-            <button class="overlay-btn quick-view-btn" data-id="${product.id}" title="Aperçu rapide">
+            <button class="overlay-btn quick-view-btn" data-id="${product.id}" aria-label="Aperçu rapide">
               <i class="fas fa-eye"></i>
             </button>
-            <button class="overlay-btn wishlist-btn" data-id="${product.id}" title="Ajouter aux favoris">
-              <i class="fas fa-heart"></i>
+            <button class="overlay-btn wishlist-btn ${isInWishlist ? "active" : ""}" data-id="${product.id}" aria-label="Favoris">
+              <i class="${isInWishlist ? "fas" : "far"} fa-heart"></i>
             </button>
           </div>
         </div>
         <div class="product-info">
           <span class="product-category">${this.getCategoryLabel(product.category)}</span>
           <h3 class="product-name">${product.name}</h3>
-          <div class="product-rating">${ratingHTML}</div>
+          <div class="product-rating">${this.createRatingStars(product.rating)}</div>
           <p class="product-description">${product.description}</p>
           <div class="product-footer">
             <div class="product-price">
-              ${this.formatPrice(product.price)}
-              ${oldPriceHTML}
+              ${Utils.formatPrice(product.price)}
+              ${product.oldPrice ? `<span>${Utils.formatPrice(product.oldPrice)}</span>` : ""}
             </div>
-            <a href="${whatsappLink}" class="btn-order" target="_blank">
-              <i class="fab fa-whatsapp"></i> Acheter
+            <a href="${whatsappLink}" class="btn-order" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i>
+              <span>Acheter</span>
             </a>
           </div>
         </div>
@@ -710,15 +1141,10 @@ class LumiereApp {
   }
 
   createRatingStars(rating) {
-    let stars = "";
-    for (let i = 1; i <= 5; i++) {
-      if (i <= rating) {
-        stars += '<i class="fas fa-star"></i>';
-      } else {
-        stars += '<i class="far fa-star"></i>';
-      }
-    }
-    return stars;
+    return Array.from(
+      { length: 5 },
+      (_, i) => `<i class="${i < rating ? "fas" : "far"} fa-star"></i>`,
+    ).join("");
   }
 
   getCategoryLabel(category) {
@@ -732,18 +1158,13 @@ class LumiereApp {
     return labels[category] || category;
   }
 
-  formatPrice(price) {
-    return new Intl.NumberFormat("fr-FR").format(price) + " " + CONFIG.currency;
-  }
-
   attachProductEvents() {
     // Quick View
     document.querySelectorAll(".quick-view-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const productId = parseInt(btn.dataset.id);
-        this.showQuickView(productId);
+        this.showQuickView(parseInt(btn.dataset.id));
       });
     });
 
@@ -752,20 +1173,28 @@ class LumiereApp {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        btn.classList.toggle("active");
-        btn.querySelector("i").classList.toggle("fas");
-        btn.querySelector("i").classList.toggle("far");
+
+        const productId = parseInt(btn.dataset.id);
+        const isAdded = this.wishlist.toggle(productId);
+
+        // Mettre à jour tous les boutons du même produit
+        document
+          .querySelectorAll(`.wishlist-btn[data-id="${productId}"]`)
+          .forEach((b) => {
+            b.classList.toggle("active", isAdded);
+            const icon = b.querySelector("i");
+            icon.className = isAdded ? "fas fa-heart" : "far fa-heart";
+          });
 
         // Animation
         btn.style.transform = "scale(1.3)";
-        setTimeout(() => {
-          btn.style.transform = "scale(1)";
-        }, 200);
+        setTimeout(() => (btn.style.transform = ""), 200);
 
-        this.showNotification(
-          btn.classList.contains("active")
-            ? "Produit ajouté aux favoris ❤️"
-            : "Produit retiré des favoris",
+        const product = PRODUCTS.find((p) => p.id === productId);
+        this.notifications.success(
+          isAdded
+            ? `${product?.name || "Produit"} ajouté aux favoris ❤️`
+            : `${product?.name || "Produit"} retiré des favoris`,
         );
       });
     });
@@ -775,38 +1204,123 @@ class LumiereApp {
     const product = PRODUCTS.find((p) => p.id === productId);
     if (!product) return;
 
-    // Créer la modal
+    // Supprimer modal existante
+    document.querySelector(".quick-view-modal")?.remove();
+
     const modal = document.createElement("div");
     modal.className = "quick-view-modal";
     modal.innerHTML = `
       <div class="quick-view-overlay"></div>
       <div class="quick-view-content">
-        <button class="quick-view-close">
+        <button class="quick-view-close" aria-label="Fermer">
           <i class="fas fa-times"></i>
         </button>
         <div class="quick-view-image">
           <img src="${product.image}" alt="${product.name}"
                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%231a1a1a%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23d4af37%22 font-size=%2230%22>✨</text></svg>'">
+          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
         </div>
         <div class="quick-view-info">
           <span class="product-category">${this.getCategoryLabel(product.category)}</span>
           <h2>${product.name}</h2>
           <div class="product-rating">${this.createRatingStars(product.rating)}</div>
           <p class="product-description">${product.description}</p>
+          ${
+            product.features
+              ? `
+            <div class="product-features">
+              ${product.features.map((f) => `<span class="feature-tag"><i class="fas fa-check"></i> ${f}</span>`).join("")}
+            </div>
+          `
+              : ""
+          }
           <div class="product-price">
-            ${this.formatPrice(product.price)}
-            ${product.oldPrice ? `<span>${this.formatPrice(product.oldPrice)}</span>` : ""}
+            ${Utils.formatPrice(product.price)}
+            ${product.oldPrice ? `<span class="old-price">${Utils.formatPrice(product.oldPrice)}</span>` : ""}
           </div>
-          <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(`Bonjour, je souhaite commander "${product.name}" à ${this.formatPrice(product.price)}`)}" 
-             class="btn-primary" target="_blank">
-            <i class="fab fa-whatsapp"></i> Commander Maintenant
-          </a>
+          <div class="quick-view-actions">
+            <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(`Bonjour, je souhaite commander "${product.name}" à ${Utils.formatPrice(product.price)}`)}" 
+               class="btn-primary" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Commander Maintenant
+            </a>
+            <button class="btn-secondary wishlist-modal-btn" data-id="${product.id}">
+              <i class="${this.wishlist.has(product.id) ? "fas" : "far"} fa-heart"></i>
+              ${this.wishlist.has(product.id) ? "Dans vos favoris" : "Ajouter aux favoris"}
+            </button>
+          </div>
         </div>
       </div>
     `;
 
-    // Styles de la modal
+    // Ajouter les styles
+    this.addQuickViewStyles();
+
+    document.body.appendChild(modal);
+    document.body.style.overflow = "hidden";
+
+    // Animation d'entrée
+    requestAnimationFrame(() => {
+      modal.classList.add("active");
+    });
+
+    // Événements de fermeture
+    const closeModal = () => {
+      modal.classList.remove("active");
+      setTimeout(() => {
+        modal.remove();
+        document.body.style.overflow = "";
+      }, 300);
+    };
+
+    modal
+      .querySelector(".quick-view-overlay")
+      .addEventListener("click", closeModal);
+    modal
+      .querySelector(".quick-view-close")
+      .addEventListener("click", closeModal);
+
+    // Wishlist dans la modal
+    modal
+      .querySelector(".wishlist-modal-btn")
+      ?.addEventListener("click", (e) => {
+        const btn = e.currentTarget;
+        const isAdded = this.wishlist.toggle(productId);
+
+        btn.innerHTML = `
+        <i class="${isAdded ? "fas" : "far"} fa-heart"></i>
+        ${isAdded ? "Dans vos favoris" : "Ajouter aux favoris"}
+      `;
+
+        // Mettre à jour les boutons de la grille aussi
+        document
+          .querySelectorAll(`.wishlist-btn[data-id="${productId}"]`)
+          .forEach((b) => {
+            b.classList.toggle("active", isAdded);
+            b.querySelector("i").className = isAdded
+              ? "fas fa-heart"
+              : "far fa-heart";
+          });
+
+        this.notifications.success(
+          isAdded ? "Ajouté aux favoris ❤️" : "Retiré des favoris",
+        );
+      });
+
+    // Fermer avec Escape
+    const escHandler = (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+        document.removeEventListener("keydown", escHandler);
+      }
+    };
+    document.addEventListener("keydown", escHandler);
+  }
+
+  addQuickViewStyles() {
+    if (document.getElementById("quick-view-styles")) return;
+
     const style = document.createElement("style");
+    style.id = "quick-view-styles";
     style.textContent = `
       .quick-view-modal {
         position: fixed;
@@ -820,7 +1334,12 @@ class LumiereApp {
         justify-content: center;
         padding: 20px;
         opacity: 0;
-        animation: fadeIn 0.3s ease forwards;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .quick-view-modal.active {
+        opacity: 1;
+        visibility: visible;
       }
       .quick-view-overlay {
         position: absolute;
@@ -840,18 +1359,22 @@ class LumiereApp {
         border: 1px solid rgba(212, 175, 55, 0.2);
         border-radius: 25px;
         padding: 40px;
-        max-width: 900px;
+        max-width: 950px;
+        width: 100%;
         max-height: 90vh;
         overflow-y: auto;
-        transform: scale(0.9);
-        animation: scaleIn 0.3s ease forwards;
+        transform: scale(0.9) translateY(20px);
+        transition: transform 0.3s ease;
+      }
+      .quick-view-modal.active .quick-view-content {
+        transform: scale(1) translateY(0);
       }
       .quick-view-close {
         position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
+        top: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
         background: rgba(212, 175, 55, 0.1);
         border: none;
         border-radius: 50%;
@@ -859,75 +1382,144 @@ class LumiereApp {
         font-size: 1.2rem;
         cursor: pointer;
         transition: all 0.3s ease;
+        z-index: 10;
       }
       .quick-view-close:hover {
         background: #d4af37;
         color: #000;
+        transform: rotate(90deg);
       }
       .quick-view-image {
-        border-radius: 15px;
+        border-radius: 20px;
         overflow: hidden;
         background: #2a2a2a;
+        position: relative;
+        aspect-ratio: 1;
       }
       .quick-view-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
+      .quick-view-image .product-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+      }
       .quick-view-info {
         display: flex;
         flex-direction: column;
         gap: 15px;
+        padding: 10px 0;
       }
       .quick-view-info h2 {
         font-family: 'Playfair Display', serif;
         font-size: 2rem;
         color: #fff;
+        margin: 0;
+        line-height: 1.2;
+      }
+      .quick-view-info .product-category {
+        color: #d4af37;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
       }
       .quick-view-info .product-description {
         color: rgba(255, 255, 255, 0.7);
         line-height: 1.8;
-      }
-      .quick-view-info .product-price {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #d4af37;
+        font-size: 1rem;
       }
       .quick-view-info .product-rating {
         color: #d4af37;
+        font-size: 1rem;
       }
-      @keyframes fadeIn {
-        to { opacity: 1; }
+      .quick-view-info .product-price {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #d4af37;
+        display: flex;
+        align-items: center;
+        gap: 15px;
       }
-      @keyframes scaleIn {
-        to { transform: scale(1); }
+      .quick-view-info .old-price {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: line-through;
+      }
+      .product-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 10px 0;
+      }
+      .feature-tag {
+        background: rgba(212, 175, 55, 0.1);
+        color: #d4af37;
+        padding: 8px 15px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .feature-tag i {
+        font-size: 0.7rem;
+      }
+      .quick-view-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 15px;
+      }
+      .quick-view-actions .btn-primary,
+      .quick-view-actions .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 18px 30px;
+      }
+      .wishlist-modal-btn {
+        background: transparent;
+        border: 2px solid rgba(212, 175, 55, 0.3);
+        color: #fff;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .wishlist-modal-btn:hover {
+        border-color: #d4af37;
+        color: #d4af37;
       }
       @media (max-width: 768px) {
         .quick-view-content {
           grid-template-columns: 1fr;
           padding: 20px;
+          gap: 20px;
+          max-height: 95vh;
+        }
+        .quick-view-image {
+          max-height: 300px;
+        }
+        .quick-view-info h2 {
+          font-size: 1.5rem;
+        }
+        .quick-view-info .product-price {
+          font-size: 1.5rem;
+        }
+        .quick-view-close {
+          top: 10px;
+          right: 10px;
+          width: 40px;
+          height: 40px;
         }
       }
     `;
-
     document.head.appendChild(style);
-    document.body.appendChild(modal);
-    document.body.style.overflow = "hidden";
-
-    // Fermeture
-    const close = () => {
-      modal.style.opacity = "0";
-      setTimeout(() => {
-        modal.remove();
-        document.body.style.overflow = "";
-      }, 300);
-    };
-
-    modal.querySelector(".quick-view-overlay").addEventListener("click", close);
-    modal.querySelector(".quick-view-close").addEventListener("click", close);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
-    });
   }
 
   // ============================================
@@ -940,102 +1532,117 @@ class LumiereApp {
 
     if (!carousel || !prevBtn || !nextBtn) return;
 
-    this.carouselPosition = 0;
-    const cardWidth = 380; // largeur carte + gap
+    const isMobile = Utils.isMobile();
+
+    if (isMobile) {
+      // Mode mobile : scroll natif
+      carousel.style.scrollSnapType = "x mandatory";
+      carousel.style.overflowX = "auto";
+      carousel.style.webkitOverflowScrolling = "touch";
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+      return;
+    }
+
+    // Mode desktop : navigation par boutons
+    const getCardWidth = () => {
+      const card = carousel.querySelector(".product-card");
+      return card ? card.offsetWidth + 20 : 350;
+    };
+
+    const getVisibleCards = () => {
+      return (
+        Math.floor(carousel.parentElement.offsetWidth / getCardWidth()) || 1
+      );
+    };
 
     const updateCarousel = () => {
       const cards = carousel.querySelectorAll(".product-card");
+      const cardWidth = getCardWidth();
+      const visibleCards = getVisibleCards();
       const maxPosition = Math.max(
         0,
-        (cards.length -
-          Math.floor(carousel.parentElement.offsetWidth / cardWidth)) *
-          cardWidth,
+        (cards.length - visibleCards) * cardWidth,
       );
 
-      this.carouselPosition = Math.min(
-        Math.max(this.carouselPosition, 0),
-        maxPosition,
+      this.carouselPosition = Math.max(
+        0,
+        Math.min(this.carouselPosition, maxPosition),
       );
       carousel.style.transform = `translateX(-${this.carouselPosition}px)`;
 
-      // Mise à jour des boutons
-      prevBtn.style.opacity = this.carouselPosition <= 0 ? "0.5" : "1";
+      prevBtn.style.opacity = this.carouselPosition <= 0 ? "0.3" : "1";
+      prevBtn.style.pointerEvents =
+        this.carouselPosition <= 0 ? "none" : "auto";
       nextBtn.style.opacity =
-        this.carouselPosition >= maxPosition ? "0.5" : "1";
+        this.carouselPosition >= maxPosition ? "0.3" : "1";
+      nextBtn.style.pointerEvents =
+        this.carouselPosition >= maxPosition ? "none" : "auto";
     };
 
     prevBtn.addEventListener("click", () => {
-      this.carouselPosition -= cardWidth;
+      this.carouselPosition -= getCardWidth();
       updateCarousel();
     });
 
     nextBtn.addEventListener("click", () => {
-      this.carouselPosition += cardWidth;
+      this.carouselPosition += getCardWidth();
       updateCarousel();
     });
 
+    updateCarousel();
+
     // Autoplay
     if (CONFIG.carouselAutoplay) {
-      let autoplayInterval = setInterval(() => {
+      let autoplayTimer = setInterval(() => {
         const cards = carousel.querySelectorAll(".product-card");
-        const maxPosition = (cards.length - 3) * cardWidth;
+        const cardWidth = getCardWidth();
+        const maxPosition = (cards.length - getVisibleCards()) * cardWidth;
 
-        if (this.carouselPosition >= maxPosition) {
-          this.carouselPosition = 0;
-        } else {
-          this.carouselPosition += cardWidth;
-        }
+        this.carouselPosition =
+          this.carouselPosition >= maxPosition
+            ? 0
+            : this.carouselPosition + cardWidth;
         updateCarousel();
       }, CONFIG.carouselInterval);
 
-      // Pause au survol
-      carousel.addEventListener("mouseenter", () => {
-        clearInterval(autoplayInterval);
-      });
-
+      carousel.addEventListener("mouseenter", () =>
+        clearInterval(autoplayTimer),
+      );
       carousel.addEventListener("mouseleave", () => {
-        autoplayInterval = setInterval(() => {
+        autoplayTimer = setInterval(() => {
           const cards = carousel.querySelectorAll(".product-card");
-          const maxPosition = (cards.length - 3) * cardWidth;
+          const cardWidth = getCardWidth();
+          const maxPosition = (cards.length - getVisibleCards()) * cardWidth;
 
-          if (this.carouselPosition >= maxPosition) {
-            this.carouselPosition = 0;
-          } else {
-            this.carouselPosition += cardWidth;
-          }
+          this.carouselPosition =
+            this.carouselPosition >= maxPosition
+              ? 0
+              : this.carouselPosition + cardWidth;
           updateCarousel();
         }, CONFIG.carouselInterval);
       });
     }
 
-    // Swipe tactile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    carousel.addEventListener(
-      "touchstart",
-      (e) => {
-        touchStartX = e.touches[0].clientX;
-      },
-      { passive: true },
-    );
-
-    carousel.addEventListener(
-      "touchend",
-      (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > 50) {
-          if (diff > 0) {
-            this.carouselPosition += cardWidth;
-          } else {
-            this.carouselPosition -= cardWidth;
-          }
+    // Recalculer au resize
+    window.addEventListener(
+      "resize",
+      Utils.debounce(() => {
+        if (Utils.isMobile()) {
+          carousel.style.scrollSnapType = "x mandatory";
+          carousel.style.overflowX = "auto";
+          carousel.style.transform = "";
+          prevBtn.style.display = "none";
+          nextBtn.style.display = "none";
+        } else {
+          carousel.style.scrollSnapType = "";
+          carousel.style.overflowX = "";
+          prevBtn.style.display = "flex";
+          nextBtn.style.display = "flex";
+          this.carouselPosition = 0;
           updateCarousel();
         }
-      },
-      { passive: true },
+      }, 200),
     );
   }
 
@@ -1044,26 +1651,29 @@ class LumiereApp {
   // ============================================
   initFilters() {
     const filterContainer = document.getElementById("categoryFilter");
-
     if (!filterContainer) return;
 
     const buttons = filterContainer.querySelectorAll(".filter-btn");
 
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        // Retirer la classe active de tous les boutons
         buttons.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
 
-        // Filtrer les produits
         const filter = btn.dataset.filter;
         this.renderGridProducts(filter);
 
         // Animation du bouton
         btn.style.transform = "scale(0.95)";
-        setTimeout(() => {
-          btn.style.transform = "";
-        }, 150);
+        setTimeout(() => (btn.style.transform = ""), 150);
+
+        // Scroll vers la grille
+        const grid = document.getElementById("productsGrid");
+        if (grid && Utils.isMobile()) {
+          setTimeout(() => {
+            Utils.scrollToElement(grid, 150);
+          }, 300);
+        }
       });
     });
   }
@@ -1077,17 +1687,15 @@ class LumiereApp {
 
     if (!track) return;
 
-    let currentTestimonial = 0;
-    const totalTestimonials =
-      document.querySelectorAll(".testimonial-item").length;
+    const items = track.querySelectorAll(".testimonial-item");
+    const total = items.length;
 
     const goToSlide = (index) => {
-      currentTestimonial = index;
-      track.style.transform = `translateX(-${index * 100}%)`;
+      this.currentTestimonial = ((index % total) + total) % total;
+      track.style.transform = `translateX(-${this.currentTestimonial * 100}%)`;
 
-      // Mise à jour des dots
       dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
+        dot.classList.toggle("active", i === this.currentTestimonial);
       });
     };
 
@@ -1097,18 +1705,27 @@ class LumiereApp {
     });
 
     // Autoplay
-    setInterval(() => {
-      const nextIndex = (currentTestimonial + 1) % totalTestimonials;
-      goToSlide(nextIndex);
+    let autoplayTimer = setInterval(() => {
+      goToSlide(this.currentTestimonial + 1);
     }, CONFIG.testimonialInterval);
 
+    // Pause au survol
+    track.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
+    track.addEventListener("mouseleave", () => {
+      autoplayTimer = setInterval(() => {
+        goToSlide(this.currentTestimonial + 1);
+      }, CONFIG.testimonialInterval);
+    });
+
     // Swipe tactile
-    let touchStartX = 0;
+    let startX = 0;
+    let isDragging = false;
 
     track.addEventListener(
       "touchstart",
       (e) => {
-        touchStartX = e.touches[0].clientX;
+        startX = e.touches[0].clientX;
+        isDragging = true;
       },
       { passive: true },
     );
@@ -1116,17 +1733,20 @@ class LumiereApp {
     track.addEventListener(
       "touchend",
       (e) => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (!isDragging) return;
+
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
 
         if (Math.abs(diff) > 50) {
-          if (diff > 0) {
-            goToSlide((currentTestimonial + 1) % totalTestimonials);
-          } else {
-            goToSlide(
-              (currentTestimonial - 1 + totalTestimonials) % totalTestimonials,
-            );
-          }
+          goToSlide(
+            diff > 0
+              ? this.currentTestimonial + 1
+              : this.currentTestimonial - 1,
+          );
         }
+
+        isDragging = false;
       },
       { passive: true },
     );
@@ -1137,29 +1757,31 @@ class LumiereApp {
   // ============================================
   initCounters() {
     const counters = document.querySelectorAll(".stat-number");
-
     if (counters.length === 0) return;
 
     const animateCounter = (counter) => {
-      const target = parseInt(counter.dataset.count);
+      const target = parseInt(counter.dataset.count) || 0;
       const duration = 2000;
-      const step = target / (duration / 16);
-      let current = 0;
+      const startTime = performance.now();
 
-      const updateCounter = () => {
-        current += step;
-        if (current < target) {
-          counter.textContent = Math.floor(current);
-          requestAnimationFrame(updateCounter);
+      const update = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+
+        const current = Math.floor(easeProgress * target);
+        counter.textContent = current;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
         } else {
           counter.textContent = target + (target === 100 ? "%" : "+");
         }
       };
 
-      updateCounter();
+      requestAnimationFrame(update);
     };
 
-    // Observer pour déclencher l'animation quand visible
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -1197,56 +1819,65 @@ class LumiereApp {
       },
     );
 
-    reveals.forEach((reveal) => revealObserver.observe(reveal));
+    reveals.forEach((el) => revealObserver.observe(el));
 
-    // Parallax effect pour les formes flottantes
-    window.addEventListener(
-      "scroll",
-      () => {
-        const scrolled = window.pageYOffset;
-        const shapes = document.querySelectorAll(".shape");
+    // Parallax pour les formes (desktop uniquement)
+    if (!Utils.isMobile()) {
+      const shapes = document.querySelectorAll(".shape");
 
-        shapes.forEach((shape, index) => {
-          const speed = (index + 1) * 0.1;
-          shape.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-      },
-      { passive: true },
-    );
+      window.addEventListener(
+        "scroll",
+        Utils.throttle(() => {
+          const scrolled = window.pageYOffset;
+          shapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.05;
+            shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.02}deg)`;
+          });
+        }, 16),
+        { passive: true },
+      );
+    }
   }
 
   // ============================================
   // FORMULAIRES
   // ============================================
   initForms() {
-    // Formulaire Newsletter
+    // Newsletter
     const newsletterForm = document.getElementById("newsletterForm");
     if (newsletterForm) {
       newsletterForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        const email = newsletterForm.querySelector("input[type='email']").value;
 
-        if (this.validateEmail(email)) {
-          this.showNotification(
+        const emailInput = newsletterForm.querySelector("input[type='email']");
+        const email = emailInput?.value?.trim();
+
+        if (!email || !Utils.validateEmail(email)) {
+          this.notifications.error(
+            "❌ Veuillez entrer une adresse email valide.",
+          );
+          emailInput?.focus();
+          return;
+        }
+
+        // Simuler l'envoi
+        const button = newsletterForm.querySelector("button");
+        const originalText = button.textContent;
+        button.textContent = "Envoi...";
+        button.disabled = true;
+
+        setTimeout(() => {
+          this.notifications.success(
             "🎉 Merci pour votre inscription ! Vous recevrez nos offres exclusives.",
           );
           newsletterForm.reset();
-
-          // Animation de succès
-          newsletterForm.style.transform = "scale(1.02)";
-          setTimeout(() => {
-            newsletterForm.style.transform = "";
-          }, 200);
-        } else {
-          this.showNotification(
-            "❌ Veuillez entrer une adresse email valide.",
-            "error",
-          );
-        }
+          button.textContent = originalText;
+          button.disabled = false;
+        }, 1000);
       });
     }
 
-    // Formulaire Contact
+    // Contact
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
       contactForm.addEventListener("submit", (e) => {
@@ -1256,131 +1887,61 @@ class LumiereApp {
         const data = Object.fromEntries(formData);
 
         // Validation
-        if (!data.name || !data.email || !data.subject || !data.message) {
-          this.showNotification(
-            "❌ Veuillez remplir tous les champs.",
-            "error",
-          );
+        if (
+          !data.name?.trim() ||
+          !data.email?.trim() ||
+          !data.subject?.trim() ||
+          !data.message?.trim()
+        ) {
+          this.notifications.error("❌ Veuillez remplir tous les champs.");
           return;
         }
 
-        if (!this.validateEmail(data.email)) {
-          this.showNotification("❌ Adresse email invalide.", "error");
+        if (!Utils.validateEmail(data.email)) {
+          this.notifications.error("❌ Adresse email invalide.");
           return;
         }
 
-        // Simuler l'envoi
         const submitBtn = contactForm.querySelector(".form-submit");
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
         submitBtn.disabled = true;
 
         setTimeout(() => {
-          this.showNotification(
+          this.notifications.success(
             "✅ Message envoyé avec succès ! Nous vous répondrons sous 24h.",
           );
           contactForm.reset();
-          submitBtn.innerHTML = originalText;
+          submitBtn.innerHTML = originalHTML;
           submitBtn.disabled = false;
 
-          // Ouvrir WhatsApp avec le message
-          const whatsappMessage = encodeURIComponent(
-            `Nouveau message de ${data.name}\n\nEmail: ${data.email}\nSujet: ${data.subject}\n\nMessage:\n${data.message}`,
-          );
-          // window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${whatsappMessage}`, '_blank');
+          // Optionnel : ouvrir WhatsApp
+          // const whatsappMsg = encodeURIComponent(`Nouveau message de ${data.name}\n\nEmail: ${data.email}\nSujet: ${data.subject}\n\nMessage:\n${data.message}`);
+          // window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${whatsappMsg}`, '_blank');
         }, 1500);
       });
     }
 
-    // Animation des champs de formulaire
-    const formInputs = document.querySelectorAll(
-      ".form-group input, .form-group textarea",
-    );
+    // Effet focus sur les champs
+    document
+      .querySelectorAll(".form-group input, .form-group textarea")
+      .forEach((input) => {
+        input.addEventListener("focus", () => {
+          input.parentElement.classList.add("focused");
+        });
 
-    formInputs.forEach((input) => {
-      input.addEventListener("focus", () => {
-        input.parentElement.classList.add("focused");
-      });
+        input.addEventListener("blur", () => {
+          if (!input.value) {
+            input.parentElement.classList.remove("focused");
+          }
+        });
 
-      input.addEventListener("blur", () => {
-        if (!input.value) {
-          input.parentElement.classList.remove("focused");
+        // Vérifier si déjà rempli
+        if (input.value) {
+          input.parentElement.classList.add("focused");
         }
       });
-    });
-  }
-
-  validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-
-  showNotification(message, type = "success") {
-    // Supprimer les notifications existantes
-    document.querySelectorAll(".notification").forEach((n) => n.remove());
-
-    const notification = document.createElement("div");
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-      <span>${message}</span>
-      <button class="notification-close"><i class="fas fa-times"></i></button>
-    `;
-
-    // Styles
-    notification.style.cssText = `
-      position: fixed;
-      top: 100px;
-      right: 30px;
-      background: ${type === "success" ? "linear-gradient(135deg, #d4af37, #f4e4bc)" : "#ff4444"};
-      color: ${type === "success" ? "#000" : "#fff"};
-      padding: 20px 30px;
-      border-radius: 15px;
-      font-weight: 500;
-      z-index: 10001;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      transform: translateX(120%);
-      animation: slideInNotification 0.5s ease forwards;
-      max-width: 400px;
-    `;
-
-    // Style du bouton de fermeture
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes slideInNotification {
-        to { transform: translateX(0); }
-      }
-      @keyframes slideOutNotification {
-        to { transform: translateX(120%); }
-      }
-      .notification-close {
-        background: transparent;
-        border: none;
-        color: inherit;
-        font-size: 1rem;
-        cursor: pointer;
-        opacity: 0.7;
-        transition: opacity 0.3s;
-      }
-      .notification-close:hover {
-        opacity: 1;
-      }
-    `;
-    document.head.appendChild(style);
-
-    document.body.appendChild(notification);
-
-    // Fermeture automatique
-    const closeNotification = () => {
-      notification.style.animation = "slideOutNotification 0.3s ease forwards";
-      setTimeout(() => notification.remove(), 300);
-    };
-
-    notification
-      .querySelector(".notification-close")
-      .addEventListener("click", closeNotification);
-    setTimeout(closeNotification, 5000);
   }
 
   // ============================================
@@ -1388,66 +1949,60 @@ class LumiereApp {
   // ============================================
   initBackToTop() {
     const backToTop = document.getElementById("backToTop");
-
     if (!backToTop) return;
 
-    // Afficher/masquer selon le scroll
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (window.pageYOffset > 500) {
-          backToTop.classList.add("visible");
-        } else {
-          backToTop.classList.remove("visible");
-        }
-      },
-      { passive: true },
-    );
+    const toggleVisibility = Utils.throttle(() => {
+      backToTop.classList.toggle("visible", window.pageYOffset > 500);
+    }, 100);
 
-    // Remonter en haut au clic
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
+
     backToTop.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
   // ============================================
-  // PLACEHOLDERS POUR IMAGES MANQUANTES
+  // PLACEHOLDERS POUR IMAGES
   // ============================================
   initPlaceholders() {
-    // Créer des placeholders SVG pour les images manquantes
-    const placeholderSVG = (text, size = "large") => {
-      const width = size === "large" ? 600 : 300;
-      const height = size === "large" ? 400 : 300;
+    const createPlaceholder = (text = "✨") => {
       return `data:image/svg+xml,${encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">
-          <rect fill="#1a1a1a" width="${width}" height="${height}"/>
-          <text x="50%" y="50%" text-anchor="middle" fill="#d4af37" font-size="40" font-family="serif">${text}</text>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+          <rect fill="#1a1a1a" width="400" height="400"/>
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#d4af37" font-size="60">${text}</text>
         </svg>
       `)}`;
     };
 
-    // Appliquer aux images du About
+    // About placeholders
     document.querySelectorAll(".about-placeholder").forEach((img) => {
-      if (!img.src || img.src === window.location.href) {
-        img.src = placeholderSVG("✨", "large");
+      if (
+        !img.src ||
+        img.src === window.location.href ||
+        img.src.endsWith("/")
+      ) {
+        img.src = createPlaceholder("💎");
       }
     });
 
-    // Appliquer aux images de la galerie
+    // Gallery placeholders
+    const galleryIcons = {
+      "gallery-1": "🧴",
+      "gallery-2": "✨",
+      "gallery-3": "💎",
+      "gallery-4": "🌿",
+      "gallery-5": "💆",
+    };
+
     document.querySelectorAll(".gallery-placeholder").forEach((img) => {
-      if (!img.src || img.src === window.location.href) {
+      if (
+        !img.src ||
+        img.src === window.location.href ||
+        img.src.endsWith("/")
+      ) {
         const placeholder = img.dataset.placeholder;
-        const icons = {
-          "gallery-1": "🧴",
-          "gallery-2": "✨",
-          "gallery-3": "💎",
-          "gallery-4": "🌿",
-          "gallery-5": "💆",
-        };
-        img.src = placeholderSVG(icons[placeholder] || "✨");
+        img.src = createPlaceholder(galleryIcons[placeholder] || "✨");
       }
     });
 
@@ -1455,8 +2010,9 @@ class LumiereApp {
     document.addEventListener(
       "error",
       (e) => {
-        if (e.target.tagName === "IMG") {
-          e.target.src = placeholderSVG("✨");
+        if (e.target.tagName === "IMG" && !e.target.dataset.errorHandled) {
+          e.target.dataset.errorHandled = "true";
+          e.target.src = createPlaceholder();
         }
       },
       true,
@@ -1470,30 +2026,19 @@ class LumiereApp {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", function (e) {
         const targetId = this.getAttribute("href");
-
-        if (targetId === "#") return;
+        if (targetId === "#" || targetId === "#!") return;
 
         const targetElement = document.querySelector(targetId);
-
         if (targetElement) {
           e.preventDefault();
-
-          const headerOffset = 100;
-          const elementPosition = targetElement.getBoundingClientRect().top;
-          const offsetPosition =
-            elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
+          Utils.scrollToElement(targetElement);
         }
       });
     });
   }
 
   // ============================================
-  // LAZY LOADING DES IMAGES
+  // LAZY LOADING
   // ============================================
   initLazyLoading() {
     const images = document.querySelectorAll("img[data-src]");
@@ -1510,163 +2055,250 @@ class LumiereApp {
             }
           });
         },
-        {
-          rootMargin: "50px",
-        },
+        { rootMargin: "100px" },
       );
 
       images.forEach((img) => imageObserver.observe(img));
     } else {
-      // Fallback pour les anciens navigateurs
       images.forEach((img) => {
         img.src = img.dataset.src;
+        img.removeAttribute("data-src");
       });
     }
+  }
+
+  // ============================================
+  // NAVIGATION CLAVIER
+  // ============================================
+  initKeyboardNavigation() {
+    document.addEventListener("keydown", (e) => {
+      // Échap pour fermer les modals/menus
+      if (e.key === "Escape") {
+        document.querySelector(".quick-view-modal")?.remove();
+        document.body.style.overflow = "";
+
+        if (this.isMenuOpen) {
+          document.getElementById("menuToggle")?.classList.remove("active");
+          document.getElementById("mobileMenu")?.classList.remove("active");
+          this.isMenuOpen = false;
+        }
+      }
+
+      // Tab navigation améliorée
+      if (e.key === "Tab") {
+        document.body.classList.add("keyboard-nav");
+      }
+    });
+
+    document.addEventListener("mousedown", () => {
+      document.body.classList.remove("keyboard-nav");
+    });
+  }
+
+  // ============================================
+  // GESTIONNAIRE DE REDIMENSIONNEMENT
+  // ============================================
+  initResizeHandler() {
+    let resizeTimer;
+
+    window.addEventListener("resize", () => {
+      document.body.classList.add("resize-animation-stopper");
+
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        document.body.classList.remove("resize-animation-stopper");
+      }, 400);
+    });
   }
 }
 
 // ============================================
 // EFFETS VISUELS SUPPLÉMENTAIRES
 // ============================================
+class VisualEffects {
+  static init() {
+    this.initHeroParallax();
+    this.initTiltEffect();
+    this.initRippleEffect();
+    this.initMagneticButtons();
+  }
 
-// Effet de parallaxe sur le hero
-const initHeroParallax = () => {
-  const hero = document.querySelector(".hero");
-  const heroContent = document.querySelector(".hero-content");
+  static initHeroParallax() {
+    const heroContent = document.querySelector(".hero-content");
+    if (!heroContent || Utils.isMobile()) return;
 
-  if (!hero || !heroContent) return;
+    window.addEventListener(
+      "scroll",
+      Utils.throttle(() => {
+        const scrolled = window.pageYOffset;
+        if (scrolled < window.innerHeight) {
+          heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+          heroContent.style.opacity = Math.max(
+            0,
+            1 - scrolled / (window.innerHeight * 0.8),
+          );
+        }
+      }, 16),
+      { passive: true },
+    );
+  }
 
-  window.addEventListener(
-    "scroll",
-    () => {
-      const scrolled = window.pageYOffset;
+  static initTiltEffect() {
+    if (Utils.isTouchDevice()) return;
 
-      if (scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.4}px)`;
-        heroContent.style.opacity = 1 - scrolled / window.innerHeight;
+    const cards = document.querySelectorAll(".product-card, .feature-card");
+
+    cards.forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 25;
+        const rotateY = (centerX - x) / 25;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  static initRippleEffect() {
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes ripple {
+        to { transform: scale(4); opacity: 0; }
       }
-    },
-    { passive: true },
-  );
-};
-
-// Effet de tilt sur les cartes produits
-const initTiltEffect = () => {
-  const cards = document.querySelectorAll(".product-card, .feature-card");
-
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-    });
-  });
-};
-
-// Effet de ripple sur les boutons
-const initRippleEffect = () => {
-  const buttons = document.querySelectorAll(
-    ".btn-primary, .btn-secondary, .filter-btn, .btn-order",
-  );
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", function (e) {
-      const ripple = document.createElement("span");
-      const rect = this.getBoundingClientRect();
-
-      ripple.style.cssText = `
+      .ripple-effect {
         position: absolute;
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.4);
         transform: scale(0);
         animation: ripple 0.6s linear;
         pointer-events: none;
-        left: ${e.clientX - rect.left}px;
-        top: ${e.clientY - rect.top}px;
-        width: 100px;
-        height: 100px;
-        margin-left: -50px;
-        margin-top: -50px;
-      `;
+      }
+    `;
+    document.head.appendChild(style);
 
-      this.style.position = "relative";
-      this.style.overflow = "hidden";
-      this.appendChild(ripple);
+    document.addEventListener("click", (e) => {
+      const button = e.target.closest(
+        ".btn-primary, .btn-secondary, .filter-btn, .btn-order",
+      );
+      if (!button) return;
+
+      const ripple = document.createElement("span");
+      const rect = button.getBoundingClientRect();
+
+      ripple.className = "ripple-effect";
+      ripple.style.width = ripple.style.height =
+        Math.max(rect.width, rect.height) + "px";
+      ripple.style.left =
+        e.clientX - rect.left - Math.max(rect.width, rect.height) / 2 + "px";
+      ripple.style.top =
+        e.clientY - rect.top - Math.max(rect.width, rect.height) / 2 + "px";
+
+      button.style.position = "relative";
+      button.style.overflow = "hidden";
+      button.appendChild(ripple);
 
       setTimeout(() => ripple.remove(), 600);
     });
-  });
+  }
 
-  // Animation CSS pour le ripple
-  const style = document.createElement("style");
-  style.textContent = `
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-  `;
-  document.head.appendChild(style);
-};
+  static initMagneticButtons() {
+    if (Utils.isTouchDevice()) return;
 
-// Effet de typing pour le titre hero
-const initTypingEffect = () => {
-  const heroTitle = document.querySelector(".hero-title");
-  if (!heroTitle) return;
+    const elements = document.querySelectorAll(
+      ".nav-cta, .whatsapp-btn, .back-to-top",
+    );
 
-  // Effet optionnel : peut être activé si souhaité
-  // const text = heroTitle.textContent;
-  // heroTitle.textContent = '';
-  // ... implémentation du typing
-};
+    elements.forEach((el) => {
+      el.addEventListener("mousemove", (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
 
-// Magnétisme sur les boutons CTA
-const initMagneticButtons = () => {
-  const magneticElements = document.querySelectorAll(
-    ".nav-cta, .whatsapp-btn, .back-to-top",
-  );
+        el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
 
-  magneticElements.forEach((el) => {
-    el.addEventListener("mousemove", (e) => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-
-      el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      el.addEventListener("mouseleave", () => {
+        el.style.transform = "";
+      });
     });
-
-    el.addEventListener("mouseleave", () => {
-      el.style.transform = "";
-    });
-  });
-};
+  }
+}
 
 // ============================================
-// INITIALISATION
+// ANALYTICS & TRACKING
+// ============================================
+class Analytics {
+  static track(category, action, label) {
+    console.log(`📊 Event: ${category} | ${action} | ${label}`);
+
+    // Intégration Google Analytics (si disponible)
+    if (typeof gtag === "function") {
+      gtag("event", action, {
+        event_category: category,
+        event_label: label,
+      });
+    }
+  }
+
+  static init() {
+    // Tracker les clics sur les boutons d'achat
+    document.addEventListener("click", (e) => {
+      const orderBtn = e.target.closest(".btn-order");
+      if (orderBtn) {
+        const card = orderBtn.closest(".product-card");
+        const productName =
+          card?.querySelector(".product-name")?.textContent || "Unknown";
+        this.track("Produit", "Clic Acheter", productName);
+      }
+
+      const quickViewBtn = e.target.closest(".quick-view-btn");
+      if (quickViewBtn) {
+        const card = quickViewBtn.closest(".product-card");
+        const productName =
+          card?.querySelector(".product-name")?.textContent || "Unknown";
+        this.track("Produit", "Quick View", productName);
+      }
+    });
+
+    // Tracker le scroll
+    let maxScroll = 0;
+    window.addEventListener(
+      "scroll",
+      Utils.throttle(() => {
+        const scrollPercent = Math.round(
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+            100,
+        );
+        if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+          maxScroll = scrollPercent;
+          this.track("Scroll", `${scrollPercent}%`, window.location.pathname);
+        }
+      }, 500),
+      { passive: true },
+    );
+  }
+}
+
+// ============================================
+// INITIALISATION GLOBALE
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialiser l'application principale
-  const app = new LumiereApp();
+  // Application principale
+  window.lumiereApp = new LumiereApp();
 
-  // Initialiser les effets visuels supplémentaires après un court délai
+  // Effets visuels (après un court délai pour ne pas bloquer le rendu)
   setTimeout(() => {
-    initHeroParallax();
-    initTiltEffect();
-    initRippleEffect();
-    initMagneticButtons();
+    VisualEffects.init();
+    Analytics.init();
   }, 100);
 });
 
@@ -1677,34 +2309,48 @@ window.addEventListener("error", (e) => {
   console.warn("Erreur capturée:", e.message);
 });
 
-// ============================================
-// SERVICE WORKER POUR PWA (Optionnel)
-// ============================================
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    // navigator.serviceWorker.register('/sw.js')
-    //   .then(reg => console.log('Service Worker enregistré'))
-    //   .catch(err => console.log('Erreur SW:', err));
-  });
-}
-
-// ============================================
-// ANALYTICS & TRACKING (Optionnel)
-// ============================================
-const trackEvent = (category, action, label) => {
-  // Intégration Google Analytics ou autre
-  // gtag('event', action, { 'event_category': category, 'event_label': label });
-  console.log(`📊 Event: ${category} - ${action} - ${label}`);
-};
-
-// Tracker les clics sur les boutons d'achat
-document.addEventListener("click", (e) => {
-  if (e.target.closest(".btn-order")) {
-    const productCard = e.target.closest(".product-card");
-    const productName =
-      productCard?.querySelector(".product-name")?.textContent;
-    trackEvent("Produit", "Clic Acheter", productName);
-  }
+window.addEventListener("unhandledrejection", (e) => {
+  console.warn("Promise rejetée:", e.reason);
 });
 
-console.log("🌟 Lumière d'Or - Script chargé avec succès!");
+// ============================================
+// STYLES DYNAMIQUES POUR KEYBOARD NAV
+// ============================================
+const dynamicStyles = document.createElement("style");
+dynamicStyles.textContent = `
+  .keyboard-nav *:focus {
+    outline: 2px solid #d4af37 !important;
+    outline-offset: 3px;
+  }
+  
+  .resize-animation-stopper * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .product-rating {
+    display: flex;
+    gap: 2px;
+    color: #d4af37;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  
+  .wishlist-btn.active {
+    color: #ff4757;
+  }
+  
+  .wishlist-btn.active i {
+    color: #ff4757;
+  }
+`;
+document.head.appendChild(dynamicStyles);
+
+// ============================================
+// EXPORT POUR UTILISATION EXTERNE
+// ============================================
+window.LumiereApp = LumiereApp;
+window.PRODUCTS = PRODUCTS;
+window.CONFIG = CONFIG;
+
+console.log("🌟 Lumière d'Or - Script v2.0 chargé avec succès!");
