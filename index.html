@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumière d'Or - Cosmétiques Premium</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- ============================================
+         PRELOADER - Écran de chargement
+    ============================================= -->
+    <div class="preloader" id="preloader">
+      <div class="preloader-content">
+        <div class="preloader-logo">Lumière d'Or</div>
+        <div class="preloader-bar">
+          <div class="preloader-progress"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         CURSEUR PERSONNALISÉ (Desktop uniquement)
+    ============================================= -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- ============================================
+         PARTICULES FLOTTANTES (Background)
+    ============================================= -->
+    <div class="particles" id="particles"></div>
+
+    <!-- ============================================
+         NAVIGATION PRINCIPALE
+    ============================================= -->
+    <nav class="navbar" id="navbar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-gem"></i>
+        </div>
+        <span class="logo-text">Lumière d'Or</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#produits">Produits</a></li>
+        <li><a href="#apropos">À Propos</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="https://wa.me/237690973861" class="nav-cta" target="_blank">
+        <i class="fab fa-whatsapp"></i> Commander
+      </a>
+
+      <!-- Menu Hamburger Mobile -->
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- ============================================
+         MENU MOBILE
+    ============================================= -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#produits">Produits</a></li>
+        <li><a href="#apropos">À Propos</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a
+        href="https://wa.me/237690973861"
+        class="nav-cta mobile-cta"
+        target="_blank"
+      >
+        <i class="fab fa-whatsapp"></i> Commander
+      </a>
+    </div>
+
+    <!-- ============================================
+         SECTION HERO - Bannière principale
+    ============================================= -->
+    <section class="hero" id="accueil">
+      <div class="hero-bg">
+        <div class="hero-slider">
+          <!-- ========== IMAGES HERO SLIDER ==========
+                     Remplacez les div par vos images:
+                     <div class="hero-slide active" style="background-image: url('images/hero/slide1.jpg');"></div>
+                =========================================== -->
+          <div class="hero-slide active"></div>
+          <div class="hero-slide"></div>
+          <div class="hero-slide"></div>
+        </div>
+      </div>
+
+      <!-- Formes flottantes décoratives -->
+      <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+
+      <!-- Contenu Hero -->
+      <div class="hero-content">
+        <span class="hero-badge">✨ Collection Premium 2024</span>
+        <h1 class="hero-title">Révélez Votre <span>Beauté Naturelle</span></h1>
+        <p class="hero-subtitle">
+          Découvrez notre gamme exclusive de cosmétiques naturels et luxueux.
+          Des formules innovantes pour sublimer votre peau au quotidien.
+        </p>
+        <div class="hero-buttons">
+          <a
+            href="https://wa.me/237690973861?text=Bonjour, je souhaite commander un produit"
+            class="btn-primary"
+            target="_blank"
+          >
+            <i class="fab fa-whatsapp"></i> Commander Maintenant
+          </a>
+          <a href="#produits" class="btn-secondary">
+            <i class="fas fa-eye"></i> Voir les Produits
+          </a>
+        </div>
+      </div>
+
+      <!-- Indicateur de scroll -->
+      <div class="scroll-indicator">
+        <a href="#features"><i class="fas fa-chevron-down"></i></a>
+      </div>
+    </section>
+
+    <!-- ============================================
+         BANDEAU DÉFILANT (Marquee)
+    ============================================= -->
+    <div class="marquee-section">
+      <div class="marquee-content">
+        <div class="marquee-item"><i class="fas fa-leaf"></i> 100% Naturel</div>
+        <div class="marquee-item">
+          <i class="fas fa-truck"></i> Livraison Rapide
+        </div>
+        <div class="marquee-item">
+          <i class="fas fa-award"></i> Qualité Premium
+        </div>
+        <div class="marquee-item">
+          <i class="fas fa-heart"></i> Satisfaction Garantie
+        </div>
+        <div class="marquee-item">
+          <i class="fas fa-star"></i> Produits Testés
+        </div>
+        <div class="marquee-item">
+          <i class="fas fa-shield-alt"></i> Paiement Sécurisé
+        </div>
+        <!-- Duplication pour effet continu -->
+        <div class="marquee-item"><i class="fas fa-leaf"></i> 100% Naturel</div>
+        <div class="marquee-item">
+          <i class="fas fa-truck"></i> Livraison Rapide
+        </div>
+        <div class="marquee-item">
+          <i class="fas fa-award"></i> Qualité Premium
+        </div>
+        <div class="marquee-item">
+          <i class="fas fa-heart"></i> Satisfaction Garantie
+        </div>
+        <div class="marquee-item">
+          <i class="fas fa-star"></i> Produits Testés
+        </div>
+        <div class="marquee-item">
+          <i class="fas fa-shield-alt"></i> Paiement Sécurisé
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         SECTION FONCTIONNALITÉS
+    ============================================= -->
+    <section class="features" id="features">
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3 class="feature-title">100% Naturel</h3>
+          <p class="feature-text">
+            Ingrédients biologiques soigneusement sélectionnés pour votre peau
+          </p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <h3 class="feature-title">Formules Avancées</h3>
+          <p class="feature-text">
+            Technologies dermatologiques de pointe pour des résultats visibles
+          </p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3 class="feature-title">Qualité Premium</h3>
+          <p class="feature-text">
+            Des produits de luxe accessibles avec une qualité irréprochable
+          </p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <i class="fas fa-shipping-fast"></i>
+          </div>
+          <h3 class="feature-title">Livraison Express</h3>
+          <p class="feature-text">
+            Recevez vos produits rapidement partout au Cameroun
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION PRODUITS
+    ============================================= -->
+    <section class="products" id="produits">
+      <div class="section-header reveal">
+        <span class="section-tag">Notre Collection</span>
+        <h2 class="section-title">Nos <span>Produits</span> Exclusifs</h2>
+        <p class="section-subtitle">
+          Découvrez notre sélection premium de soins cosmétiques naturels et
+          efficaces
+        </p>
+      </div>
+
+      <!-- ========== FILTRES PAR CATÉGORIE ========== -->
+      <div class="category-filter reveal" id="categoryFilter">
+        <button class="filter-btn active" data-filter="all">Tous</button>
+        <button class="filter-btn" data-filter="savons">Savons</button>
+        <button class="filter-btn" data-filter="soins">Soins Visage</button>
+        <button class="filter-btn" data-filter="corps">Corps</button>
+        <button class="filter-btn" data-filter="cheveux">Cheveux</button>
+        <button class="filter-btn" data-filter="accessoires">
+          Accessoires
+        </button>
+      </div>
+
+      <!-- ========== CARROUSEL DE PRODUITS ========== -->
+      <div class="products-carousel-container">
+        <button class="carousel-nav prev" id="carouselPrev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="products-carousel" id="productsCarousel">
+          <!-- Les produits du carrousel seront générés par JavaScript -->
+        </div>
+
+        <button class="carousel-nav next" id="carouselNext">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- ========== GRILLE DE TOUS LES PRODUITS ========== -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Les produits seront générés dynamiquement par JavaScript -->
+        <!-- Chaque produit aura cette structure:
+            
+            <div class="product-card" data-category="savons">
+                <span class="product-badge">Best-seller</span>
+                <div class="product-image">
+                    ========== IMAGE PRODUIT ==========
+                    Remplacez par: <img src="images/products/votre-image.jpg" alt="Nom du produit">
+                    ===================================
+                    <img src="images/products/savon-nila.jpg" alt="Savon Nila">
+                    <div class="product-overlay">
+                        <button class="overlay-btn"><i class="fas fa-eye"></i></button>
+                        <button class="overlay-btn"><i class="fas fa-heart"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">savons</span>
+                    <h3 class="product-name">Savon Nila</h3>
+                    <p class="product-description">Description du produit</p>
+                    <div class="product-footer">
+                        <div class="product-price">3 500 FCFA</div>
+                        <a href="https://wa.me/237690973861?text=..." class="btn-order">
+                            <i class="fab fa-whatsapp"></i> Acheter
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            -->
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION À PROPOS
+    ============================================= -->
+    <section class="about" id="apropos">
+      <div class="about-container">
+        <!-- Images À Propos -->
+        <div class="about-images reveal-left">
+          <div class="about-img about-img-1">
+            <!-- ========== IMAGE À PROPOS 1 ==========
+                         Remplacez par votre image:
+                         <img src="images/about/about-1.jpg" alt="À propos Lumière d'Or">
+                    ========================================= -->
+            <img
+              src=""
+              alt="À propos Lumière d'Or - Image 1"
+              class="about-placeholder"
+              data-placeholder="about-1"
+            />
+          </div>
+
+          <div class="about-img about-img-2">
+            <!-- ========== IMAGE À PROPOS 2 ==========
+                         Remplacez par votre image:
+                         <img src="images/about/about-2.jpg" alt="Nos produits">
+                    ========================================= -->
+            <img
+              src=""
+              alt="À propos Lumière d'Or - Image 2"
+              class="about-placeholder"
+              data-placeholder="about-2"
+            />
+          </div>
+
+          <div class="about-decoration"></div>
+        </div>
+
+        <!-- Contenu À Propos -->
+        <div class="about-content reveal-right">
+          <span class="section-tag">Notre Histoire</span>
+          <h2 class="section-title">La Beauté <span>Naturelle</span></h2>
+          <p class="about-text">
+            Chez Lumière d'Or, nous croyons que la vraie beauté vient de
+            l'intérieur et se reflète à l'extérieur. Notre mission est de vous
+            offrir des produits cosmétiques de haute qualité, formulés avec des
+            ingrédients naturels soigneusement sélectionnés.
+            <br /><br />
+            Chaque produit est conçu pour révéler votre éclat naturel tout en
+            prenant soin de votre peau avec douceur et efficacité.
+          </p>
+
+          <!-- Statistiques -->
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number" data-count="500">0</div>
+              <div class="stat-label">Clients Satisfaits</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="15">0</div>
+              <div class="stat-label">Produits</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="100">0</div>
+              <div class="stat-label">% Naturel</div>
+            </div>
+          </div>
+
+          <a
+            href="https://wa.me/237690973861"
+            class="btn-primary"
+            target="_blank"
+          >
+            <i class="fas fa-phone-alt"></i> Contactez-nous
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION TÉMOIGNAGES
+    ============================================= -->
+    <section class="testimonials" id="testimonials">
+      <div class="section-header reveal">
+        <span class="section-tag">Témoignages</span>
+        <h2 class="section-title">Ce que disent nos <span>Clients</span></h2>
+      </div>
+
+      <div class="testimonials-slider reveal">
+        <div class="testimonial-track" id="testimonialTrack">
+          <!-- Témoignage 1 -->
+          <div class="testimonial-item">
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="testimonial-text">
+              "Les produits Lumière d'Or ont complètement transformé ma peau. Le
+              sérum anti-tache est incroyable ! En quelques semaines, mes taches
+              ont considérablement diminué."
+            </p>
+            <div class="testimonial-author">
+              <!-- ========== AVATAR CLIENT ==========
+                             Remplacez par: <img src="images/testimonials/client1.jpg" alt="Sarah M.">
+                        ====================================== -->
+              <div class="author-avatar">S</div>
+              <span class="author-name">Sarah M.</span>
+              <span class="author-role">Cliente fidèle</span>
+            </div>
+          </div>
+
+          <!-- Témoignage 2 -->
+          <div class="testimonial-item">
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="testimonial-text">
+              "Enfin des produits naturels qui fonctionnent vraiment ! Le savon
+              au curcuma a rendu ma peau lumineuse. Je recommande à 100% !"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">A</div>
+              <span class="author-name">Aminata K.</span>
+              <span class="author-role">Nouvelle cliente</span>
+            </div>
+          </div>
+
+          <!-- Témoignage 3 -->
+          <div class="testimonial-item">
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="testimonial-text">
+              "Service client exceptionnel et produits de qualité. Le bonnet
+              chauffant pour mes cheveux est devenu indispensable dans ma
+              routine capillaire."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">F</div>
+              <span class="author-name">Fatou D.</span>
+              <span class="author-role">Cliente VIP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Points de navigation -->
+        <div class="testimonial-dots">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION GALERIE
+    ============================================= -->
+    <section class="gallery" id="galerie">
+      <div class="section-header reveal">
+        <span class="section-tag">Galerie</span>
+        <h2 class="section-title">Notre <span>Univers</span></h2>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- ========== IMAGE GALERIE 1 (Grande) ==========
+                 Remplacez par: <img src="images/gallery/gallery-1.jpg" alt="Collection Savons">
+            ================================================== -->
+        <div class="gallery-item gallery-item-large reveal-scale">
+          <img
+            src=""
+            alt="Collection Savons"
+            class="gallery-placeholder"
+            data-placeholder="gallery-1"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-title">Collection Savons</span>
+          </div>
+        </div>
+
+        <!-- ========== IMAGE GALERIE 2 ========== -->
+        <div class="gallery-item reveal-scale">
+          <img
+            src=""
+            alt="Soins Visage"
+            class="gallery-placeholder"
+            data-placeholder="gallery-2"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-title">Soins Visage</span>
+          </div>
+        </div>
+
+        <!-- ========== IMAGE GALERIE 3 ========== -->
+        <div class="gallery-item reveal-scale">
+          <img
+            src=""
+            alt="Accessoires"
+            class="gallery-placeholder"
+            data-placeholder="gallery-3"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-title">Accessoires</span>
+          </div>
+        </div>
+
+        <!-- ========== IMAGE GALERIE 4 ========== -->
+        <div class="gallery-item reveal-scale">
+          <img
+            src=""
+            alt="Soins Corps"
+            class="gallery-placeholder"
+            data-placeholder="gallery-4"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-title">Soins Corps</span>
+          </div>
+        </div>
+
+        <!-- ========== IMAGE GALERIE 5 ========== -->
+        <div class="gallery-item reveal-scale">
+          <img
+            src=""
+            alt="Soins Cheveux"
+            class="gallery-placeholder"
+            data-placeholder="gallery-5"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-title">Soins Cheveux</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION NEWSLETTER
+    ============================================= -->
+    <section class="newsletter">
+      <div class="newsletter-content reveal">
+        <h2>Rejoignez la Famille Lumière d'Or</h2>
+        <p>
+          Inscrivez-vous pour recevoir nos offres exclusives et nouveautés en
+          avant-première
+        </p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Votre adresse email" required />
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SECTION CONTACT
+    ============================================= -->
+    <section class="contact" id="contact">
+      <div class="contact-container">
+        <!-- Informations de contact -->
+        <div class="contact-info reveal-left">
+          <h3>Contactez-nous</h3>
+          <p>
+            Une question ? Une commande ? N'hésitez pas à nous contacter. Notre
+            équipe est là pour vous accompagner dans votre parcours beauté.
+          </p>
+
+          <div class="contact-details">
+            <!-- WhatsApp -->
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div class="contact-text">
+                <h4>WhatsApp</h4>
+                <p>
+                  <a href="https://wa.me/237690973861" target="_blank"
+                    >+237 690 973 861</a
+                  >
+                </p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <p>
+                  <a href="mailto:yannickndako@gmail.com"
+                    >yannickndako@gmail.com</a
+                  >
+                </p>
+              </div>
+            </div>
+
+            <!-- Localisation -->
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Localisation</h4>
+                <p>Cameroun</p>
+              </div>
+            </div>
+
+            <!-- Horaires -->
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Horaires</h4>
+                <p>Lun - Sam: 8h - 20h</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire de contact -->
+        <div class="contact-form-container reveal-right">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Votre nom"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Votre email"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" name="subject" placeholder="Sujet" required />
+            </div>
+            <div class="form-group">
+              <textarea
+                name="message"
+                placeholder="Votre message"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              <i class="fas fa-paper-plane"></i> Envoyer le Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+    ============================================= -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <!-- Marque -->
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-gem"></i>
+            </div>
+            <span class="logo-text">Lumière d'Or</span>
+          </div>
+          <p>
+            Votre partenaire beauté pour une peau rayonnante et naturelle. Des
+            produits cosmétiques premium formulés avec amour.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://wa.me/237690973861"
+              target="_blank"
+              aria-label="WhatsApp"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Liens rapides -->
+        <div class="footer-column">
+          <h4>Liens Rapides</h4>
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#produits">Produits</a></li>
+            <li><a href="#apropos">À Propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Catégories -->
+        <div class="footer-column">
+          <h4>Catégories</h4>
+          <ul>
+            <li><a href="#produits">Savons</a></li>
+            <li><a href="#produits">Soins Visage</a></li>
+            <li><a href="#produits">Soins Corps</a></li>
+            <li><a href="#produits">Soins Cheveux</a></li>
+            <li><a href="#produits">Accessoires</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Livraison</a></li>
+            <li><a href="#">Retours</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>
+          © 2024 <a href="#">Lumière d'Or</a>. Tous droits réservés. Fait avec
+          ❤️ au Cameroun
+        </p>
+        <div class="payment-methods">
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================
+         BOUTON WHATSAPP FLOTTANT
+    ============================================= -->
+    <div class="whatsapp-float">
+      <div class="whatsapp-tooltip">Commander sur WhatsApp</div>
+      <a
+        href="https://wa.me/237690973861?text=Bonjour, je souhaite commander un produit Lumière d'Or"
+        class="whatsapp-btn"
+        target="_blank"
+        aria-label="WhatsApp"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- ============================================
+         BOUTON RETOUR EN HAUT
+    ============================================= -->
+    <div class="back-to-top" id="backToTop">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- ============================================
+         SCRIPTS JAVASCRIPT
+    ============================================= -->
+    <script src="script.js"></script>
+  </body>
+</html>
