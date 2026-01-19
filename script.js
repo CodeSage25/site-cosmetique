@@ -34,7 +34,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Savon naturel au nila bleu pour un teint éclatant et uniforme. Nettoie en profondeur tout en respectant votre peau.",
-    image: "images/products/savon-nila.jpg",
+    image: "img/savon4.jpg",
     badge: "Best-seller",
     rating: 5,
     stock: true,
@@ -48,7 +48,7 @@ const PRODUCTS = [
     oldPrice: 3500,
     description:
       "Savon éclaircissant au curcuma pour une peau lumineuse et saine. Idéal pour unifier le teint.",
-    image: "images/products/savon-curcuma.jpg",
+    image: "img/savonCurcuma.jpg",
     badge: "Promo",
     rating: 5,
     stock: true,
@@ -62,7 +62,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Enrichi en bêta-carotène pour un effet bonne mine naturel et une peau éclatante de santé.",
-    image: "images/products/savon-carotte.jpg",
+    image: "img/Savon Carotte Intense.jpeg",
     badge: null,
     rating: 4,
     stock: true,
@@ -76,7 +76,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Douceur et hydratation intense pour les peaux sensibles. Apaise et nourrit en profondeur.",
-    image: "images/products/savon-lait-chevre.jpg",
+    image: "img/savon Lait de Chèvre.jpeg",
     badge: "Nouveau",
     rating: 5,
     stock: true,
@@ -90,7 +90,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Purifie et détoxifie la peau en profondeur. Élimine les impuretés et resserre les pores.",
-    image: "images/products/savon-charbon.jpg",
+    image: "img/Savon Charbon Acti.jpeg",
     badge: null,
     rating: 4,
     stock: true,
@@ -104,7 +104,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Exfoliation douce à la papaye pour éliminer les cellules mortes et révéler une peau neuve.",
-    image: "images/products/savon-papaye.jpg",
+    image: "img/Savon Papaye Exfoliant.jpeg",
     badge: null,
     rating: 4,
     stock: true,
@@ -120,7 +120,7 @@ const PRODUCTS = [
     oldPrice: 15000,
     description:
       "Sérum concentré pour éliminer les taches et unifier le teint. Résultats visibles en 2 semaines.",
-    image: "images/products/serum-anti-taches.jpg",
+    image: "img/Sérum Anti-Taches Éclat.jpeg",
     badge: "Top vente",
     rating: 5,
     stock: true,
@@ -134,7 +134,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Hydratation longue durée pour une peau douce et rebondie. Texture légère non grasse.",
-    image: "images/products/creme-hydratante.jpg",
+    image: "img/Crème Hydratante 24H.jpeg",
     badge: null,
     rating: 5,
     stock: true,
@@ -148,7 +148,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Huile naturelle pour un teint hâlé et une peau nourrie. Riche en vitamines A et E.",
-    image: "images/products/huile-carotte.jpg",
+    image: "img/Huile de Carotte Pure.jpeg",
     badge: "Naturel",
     rating: 4,
     stock: true,
@@ -162,7 +162,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Masque illuminateur pour un coup d'éclat immédiat. Parfait avant une occasion spéciale.",
-    image: "images/products/masque-eclat.jpg",
+    image: "img/Masque Éclat Instantané.jpeg",
     badge: null,
     rating: 4,
     stock: true,
@@ -176,7 +176,7 @@ const PRODUCTS = [
     oldPrice: 12000,
     description:
       "Soin ciblé pour réduire les cernes et les poches. Regard frais et reposé.",
-    image: "images/products/contour-yeux.jpg",
+    image: "img/Contour des Yeux Premium.jpeg",
     badge: "Promo",
     rating: 5,
     stock: true,
@@ -192,7 +192,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Lait nourrissant au beurre de karité pour une peau satinée et protégée toute la journée.",
-    image: "images/products/lait-karite.jpg",
+    image: "img/Lait Corporel Karité.jpeg",
     badge: "Coup de cœur",
     rating: 5,
     stock: true,
@@ -206,7 +206,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Exfoliant naturel au café pour une peau lisse et tonifiée. Action anti-cellulite.",
-    image: "images/products/gommage-cafe.jpg",
+    image: "img/Gommage Corps Café.jpeg",
     badge: null,
     rating: 4,
     stock: true,
@@ -220,7 +220,7 @@ const PRODUCTS = [
     oldPrice: 11000,
     description:
       "Huile multi-usages pour le corps, le visage et les cheveux. Absorption rapide.",
-    image: "images/products/huile-seche.jpg",
+    image: "img/Huile Sèche Précieuse.jpeg",
     badge: "Promo",
     rating: 5,
     stock: true,
@@ -234,7 +234,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Beurre fondant à la mangue pour une hydratation intense des peaux très sèches.",
-    image: "images/products/beurre-mangue.jpg",
+    image: "img/Beurre Corporel Mangue.jpeg",
     badge: null,
     rating: 4,
     stock: true,
@@ -250,7 +250,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Bonnet thermique pour des soins capillaires professionnels à domicile. Optimise la pénétration des soins.",
-    image: "images/products/bonnet-chauffant.jpg",
+    image: "img/Bonnet Chauffant Pro.jpeg",
     badge: "Exclusif",
     rating: 5,
     stock: true,
@@ -264,7 +264,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Masque réparateur pour cheveux secs et abîmés. Répare et renforce la fibre capillaire.",
-    image: "images/products/masque-capillaire.jpg",
+    image: "img/Masque Capillaire Intense.jpeg",
     badge: null,
     rating: 4,
     stock: true,
@@ -278,7 +278,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Stimule la pousse des cheveux et des cils naturellement. Huile 100% pure et pressée à froid.",
-    image: "images/products/huile-ricin.jpg",
+    image: "img/Huile de Ricin Premium.jpeg",
     badge: "Naturel",
     rating: 5,
     stock: true,
@@ -292,7 +292,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Sérum concentré pour stimuler la croissance capillaire et renforcer les cheveux fragiles.",
-    image: "images/products/serum-pousse.jpg",
+    image: "img/Sérum Pousse Express.jpeg",
     badge: "Nouveau",
     rating: 5,
     stock: true,
@@ -308,7 +308,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Brosse en silicone pour un nettoyage en profondeur. Vibrante et rechargeable.",
-    image: "images/products/brosse-visage.jpg",
+    image: "img/Brosse Nettoyante Visage.jpeg",
     badge: null,
     rating: 4,
     stock: true,
@@ -322,7 +322,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Bandeau doux et élégant pour vos soins beauté. Maintien parfait des cheveux.",
-    image: "images/products/bandeau-spa.jpg",
+    image: "img/Bandeau Spa Luxe.jpeg",
     badge: null,
     rating: 5,
     stock: true,
@@ -336,7 +336,7 @@ const PRODUCTS = [
     oldPrice: 15000,
     description:
       "Set complet de 12 pinceaux professionnels avec pochette de rangement.",
-    image: "images/products/kit-pinceaux.jpg",
+    image: "img/Kit Pinceaux Maquillage.jpeg",
     badge: "Promo",
     rating: 5,
     stock: true,
@@ -350,7 +350,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Rouleau en jade naturel pour masser et tonifier le visage. Effet anti-âge.",
-    image: "images/products/rouleau-jade.jpg",
+    image: "img/Rouleau Jade Visage.jpeg",
     badge: "Tendance",
     rating: 5,
     stock: true,
@@ -364,7 +364,7 @@ const PRODUCTS = [
     oldPrice: null,
     description:
       "Pierre de massage Gua Sha en quartz rose pour sculpter et lifter le visage.",
-    image: "images/products/gua-sha.jpg",
+    image: "img/Gua Sha Quartz Rose.jpeg",
     badge: null,
     rating: 4,
     stock: true,
